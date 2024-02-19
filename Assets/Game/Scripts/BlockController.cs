@@ -4,9 +4,8 @@ namespace Game.Board
 {
     public class BlockController: MonoBehaviour
     {
-
-
         [SerializeField] private GemBlock gemBlock;
+        [SerializeField] private float forceDownSpeed = 10;
 
 
         public void Update()
@@ -22,7 +21,7 @@ namespace Game.Board
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                gemBlock.Move(Vector2.down * 10 * Time.deltaTime);
+                gemBlock.Move(Vector2.down * forceDownSpeed * Time.deltaTime);
             }
 
         }
