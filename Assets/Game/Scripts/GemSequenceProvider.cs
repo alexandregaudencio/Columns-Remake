@@ -1,0 +1,61 @@
+using Game.Board;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Game.Board.Gems
+{
+    //provê sequencia de 3 gemas;
+    public class GemSequenceProvider : MonoBehaviour
+    {
+        [SerializeField] private List<Sequence> sequencesReleased = new();
+
+        public static GemSequenceProvider Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+        private void Start()
+        {
+            sequencesReleased.Clear();
+            GenerateNewSequences();
+
+        }
+
+        private void GenerateNewSequences()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                sequencesReleased.Add(GenerateSequence());
+            }
+        }
+
+        private Sequence GenerateSequence()
+        {
+            Sequence sequence = new Sequence();
+            sequence.GemUp = GemProvider.Instance.GetGemRandomly();
+            sequence.GemMiddle = GemProvider.Instance.GetGemRandomly();
+            sequence.GemDown = GemProvider.Instance.GetGemRandomly();
+            return sequence;
+
+
+        }
+
+        public Sequence FindSequence(int index)
+        {
+            if (index >= sequencesReleased.Count - 1)
+            {
+                GenerateNewSequences();
+            }
+            return sequencesReleased[index];
+        }
+
+
+    }
+
+
+  
+}
+
+
+
