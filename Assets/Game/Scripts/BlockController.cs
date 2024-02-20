@@ -65,7 +65,7 @@ namespace Game.Board
         }
 
         
-        public bool IsValidMoviment(Vector2 direction)
+        public bool IsValidMovement(Vector2 direction)
         {
 
             if (gemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
@@ -85,7 +85,7 @@ namespace Game.Board
 
         public void Move(Vector2 direction)
         {
-            if (!IsValidMoviment(direction)) return;
+            if (!IsValidMovement(direction)) return;
             transform.position += (Vector3)direction;
         }
 
@@ -93,20 +93,10 @@ namespace Game.Board
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-
-
             Gizmos.DrawLine(gemBlock.PointUnderLeft, gemBlock.PointUnderRight);
-
         }
 
-        private void OnGUI()
-        {
-            bool a = gemBlock.Bounds.Intersects(BoardController.Instance.Bounds);
-            GUI.Label(new Rect(0, 0, 200, 100), "board intersect block: " + a);
-            GUI.Label(new Rect(0, 20, 200, 100), "is valid movement: " + IsValidMoviment(Vector3.zero));
 
-
-        }
 
     }
 
