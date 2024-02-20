@@ -1,5 +1,7 @@
 using System;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace  Game.Board.Gems
 {
@@ -10,8 +12,9 @@ namespace  Game.Board.Gems
         
         [field: SerializeField] public GemType Type { get; private set; }
         [field: SerializeField] public Sprite Sprite { get; private set; }
+        [field: SerializeField] public TileBase TileBase { get; private set; }
 
-        public int GemIndex => (int)Type;
+        public int Index => (int)Type;
 
 
     }

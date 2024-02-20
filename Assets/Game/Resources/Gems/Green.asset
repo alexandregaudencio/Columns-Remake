@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: 21300000, guid: c0e590bffdd163046b2d4f6fee235d84, type: 3}
-  <Position>k__BackingField: {x: 0, y: 0}
-  <IsSpecial>k__BackingField: 0
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 232a2045d2b046947bb8133f8484cf7a, type: 2}

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd248153d617e044692ae498bf11a6d0, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 10
+  <Type>k__BackingField: 9
   <Sprite>k__BackingField: {fileID: 21300000, guid: b8530115ae3061441996739a3433465d, type: 3}
+  <TileBase>k__BackingField: {fileID: 11400000, guid: d2b472d67684e52459048156fac72ad6, type: 2}

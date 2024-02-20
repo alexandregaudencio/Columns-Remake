@@ -26,5 +26,11 @@ namespace Game.Board
 
         }
 
+        //public bool IsValidMoviment(Vector2 direction)
+        //{
+        //    //if()
+        //}
+
     }
+
 }
