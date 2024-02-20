@@ -37,8 +37,9 @@ namespace Game.Board
                 indexes = string.Concat(aux, "\n", indexes);
 
             }
+            GUILayout.Label("\n Gem Indexes Throughout array2D", GUILayout.Height(40), GUILayout.Width(300));
 
-            GUILayout.Label(indexes, GUILayout.Height(250), GUILayout.Width(300));
+            GUILayout.Label(indexes, GUILayout.Height(200), GUILayout.Width(300));
         }
     }
 }

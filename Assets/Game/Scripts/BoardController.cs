@@ -1,4 +1,5 @@
 using Game.Board.Gems;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,7 +8,6 @@ namespace Game.Board
 {
     public class BoardController : MonoBehaviour
     {
-
         [field: SerializeField] public Vector2Int Size { get; private set; } = new Vector2Int(7, 13);
         [SerializeField] private Tilemap gemTilemap;
         public int[,] gemCells;
@@ -15,6 +15,7 @@ namespace Game.Board
         public Bounds Bounds => new Bounds(
             (transform.position + new Vector3(Size.x / 2, Size.y / 2)), 
             new Vector3(Size.x, Size.y));
+
 
         private void Awake()
         {
@@ -25,12 +26,8 @@ namespace Game.Board
         {      
             gemCells = new int[Size.x, Size.y];
             ResetGemsInCells();
-            
-            
+
             SetGemTile(new Vector2Int(Random.Range(0, 7), Random.Range(0, 13)), GemProvider.Instance.GetGemRandomly());
-
-
-
 
         }
 
@@ -51,6 +48,8 @@ namespace Game.Board
             gemCells[position.x, position.y] = gem.Index;
             gemTilemap.SetTile((Vector3Int)position, gem.TileBase);
         }
+
+
 
         public void OnDrawGizmosSelected()
         {

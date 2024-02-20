@@ -14,6 +14,19 @@ namespace Game.Board
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
 
         private Sequence sequence;
+        public Vector2Int Vec2IntPosition => 
+            new Vector2Int(
+                Mathf.RoundToInt(transform.position.x), 
+                Mathf.RoundToInt(transform.position.y));
+
+        public Dictionary<Vector2Int, Gem> PositionGemConfig => new()
+        {
+            { Vec2IntPosition+Vector2Int.up   ,sequence.GemUp },
+            { Vec2IntPosition+Vector2Int.zero ,sequence.GemMiddle },
+            { Vec2IntPosition+Vector2Int.down ,sequence.GemDown }
+
+        };
+
 
         private void Awake()
         {
@@ -44,9 +57,4 @@ namespace Game.Board
 
 
     }
-
-
-
-
-
 }
