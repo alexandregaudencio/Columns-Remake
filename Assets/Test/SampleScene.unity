@@ -338,17 +338,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: GemBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 3730575273897895714, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_Name
+      value: PieceDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012247213297670402, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_Name
+      value: PieceMiddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047848058156948250, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: descentSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047848058156948250, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: sessionProperties
+      value: 
+      objectReference: {fileID: 866693286}
+    - target: {fileID: 4928406250351224695, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5046879060822364231, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: sessionProperties
       value: 
       objectReference: {fileID: 866693286}
+    - target: {fileID: 5410936424972139441, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_Name
+      value: PieceUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431700497174038714, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437307810057028774, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5571092880791179531, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571092880791179531, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571092880791179531, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2885,13 +2917,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: GemCellsTilempap
       objectReference: {fileID: 0}
-    - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+    - target: {fileID: 697821189119185303, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 743655209140673811, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_CellSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306930127190867041, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+    - target: {fileID: 4306930127190867041, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2929,6 +2977,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7860237165235343046, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860237165235343046, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: gem
       value: 
@@ -2945,9 +3001,33 @@ PrefabInstance:
       propertyPath: gemCellTilemap
       value: 
       objectReference: {fileID: 1454713745}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: bounds.m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: bounds.m_Size.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: bounds.m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: <Size>k__BackingField.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: <Size>k__BackingField.y
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8000735591501451286, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Name
       value: BackgroundTilemap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000735591501451286, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9021595657004258155, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Name
@@ -2965,8 +3045,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 7933476354298045535}
-  - {fileID: 4447549148091985991}
   - {fileID: 1554473019642377376}
+  - {fileID: 4447549148091985991}
   - {fileID: 1385466669576500763}
   - {fileID: 1729491377675832836}
   - {fileID: 866693287}

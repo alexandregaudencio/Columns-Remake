@@ -12,7 +12,10 @@ namespace Game.Board
         [SerializeField] private Tilemap gemTilemap;
         public int[,] gemCells;
         public static BoardController Instance { get; private set; }
-        public BoundsInt bounds;
+        public Bounds Bounds => new Bounds(
+            (transform.position + new Vector3(Size.x / 2, Size.y / 2)), 
+            new Vector3(Size.x, Size.y));
+
         private void Awake()
         {
             Instance = this;
@@ -52,8 +55,7 @@ namespace Game.Board
         public void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Vector2 targetPosition = new Vector3(Size.x/2, Size.y/2);
-            Gizmos.DrawWireCube( targetPosition, new Vector3(bounds.size.x, bounds.size.y, 0));
+            Gizmos.DrawWireCube(Bounds.center, Bounds.size);
 
 
         }
