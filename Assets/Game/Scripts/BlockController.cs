@@ -1,19 +1,51 @@
+using Game.Board.Gems;
 using Game.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Board
 {
+    [RequireComponent(typeof(GemBlock))]
     public class BlockController: MonoBehaviour
     {
-        [SerializeField] private GemBlock gemBlock;
+        public GemBlock GemBlock { get; private set; }
         [SerializeField] private float forceDownSpeed = 10;
         [SerializeField] [Min(0.1f)] float descentSpeed = 0.1f;
 
         [SerializeField] private PlayerSessionProperties sessionProperties;
+        public static BlockController Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+            GemBlock = GetComponent<GemBlock>();
+        }
+        private void Start()
+        {
+            ResetPosition();
+        }
+
+        private void OnEnable()
+        {
+            sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
+        }
+
+        private void OnDisable()
+        {
+            sessionProperties.SequenceIndexUpdate -= OnSequenceIndexUpdate;
+        }
+
 
         private void FixedUpdate()
         {
-            Move(Vector2.down * descentSpeed * Time.fixedDeltaTime);
+            Vector2 positionDown = Vector2.down * descentSpeed * Time.fixedDeltaTime;
+            Debug.Log(HasFreePositionOnBoard(positionDown));
+
+            if (HasFreePositionOnBoard(positionDown))
+            {
+                Move(positionDown);
+
+            }
 
         }
 
@@ -36,49 +68,65 @@ namespace Game.Board
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                gemBlock.SwitchSequence();
+                GemBlock.SwitchSequence();
             }
 
+
+
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                foreach(KeyValuePair<Vector2Int, Gem> positionGemPair in GemBlock.PositionGemPair)
+                {
+                    BoardController.Instance.SetGemTile(positionGemPair.Key, positionGemPair.Value);
+                }
+            }
+
+
         }
 
-        private void Start()
-        {
-            ResetPosition();
-        }
-
-        private void OnEnable()
-        {
-            sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
-        }
-
-        private void OnDisable()
-        {
-            sessionProperties.SequenceIndexUpdate -= OnSequenceIndexUpdate;
-        }
 
 
         private void OnSequenceIndexUpdate(int _)
         {
-            gemBlock.SetupBlock(sessionProperties.CurrentSequence);
+            GemBlock.SetupBlock(sessionProperties.CurrentSequence);
             ResetPosition();
 
         }
 
-        
         public bool IsValidMovement(Vector2 direction)
         {
 
-            if (gemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
-            if (gemBlock.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
-            if(gemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
+            if (GemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
+            if (GemBlock.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
+            if(GemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
             return true;
+
+        }
+
+        public bool HasFreePositionOnBoard(Vector2 positionDown)
+        {
+            Vector2 targetPositionDown = (Vector2)GemBlock.PointUnderRight + positionDown;
+
+
+            if (targetPositionDown.y < BoardController.Instance.Bounds.min.y) return false;
+
+
+            //Vector2Int gem2downPosition = GemBlock.GetPositionGemPair(2).Key + new Vector2Int((int)positionDown.x, Mathf.FloorToInt(positionDown.y));
+            //if(BoardController.Instance.HasGem(gem2downPosition)) return false;
+
+            return true;
+
 
         }
 
 
         public void ResetPosition()
         {
-            transform.position = new Vector3(BoardController.Instance.Size.x / 2, BoardController.Instance.Size.y);
+            transform.localPosition = BoardController.Instance.GetStartBlockPosition();
         }
 
 
@@ -92,8 +140,9 @@ namespace Game.Board
 
         private void OnDrawGizmos()
         {
+            if (GemBlock == null) return;
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(gemBlock.PointUnderLeft, gemBlock.PointUnderRight);
+            Gizmos.DrawLine(GemBlock.PointUnderLeft, GemBlock.PointUnderRight);
         }
 
 

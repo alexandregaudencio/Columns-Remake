@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd248153d617e044692ae498bf11a6d0, type: 3}
   m_Name: Yellow
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 4
+  <Type>k__BackingField: 3
   <Sprite>k__BackingField: {fileID: 21300000, guid: 79353f1607db21249977882a756692af, type: 3}
   <TileBase>k__BackingField: {fileID: 11400000, guid: 977b4048d0768ce48862597980815a7d, type: 2}

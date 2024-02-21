@@ -10,11 +10,23 @@ namespace Game.Board
     {
         [field: SerializeField] public Vector2Int Size { get; private set; } = new Vector2Int(7, 13);
         [SerializeField] private Tilemap gemTilemap;
+
         public int[,] gemCells;
         public static BoardController Instance { get; private set; }
         public Bounds Bounds => new Bounds(
             (transform.position + new Vector3(Size.x / 2, Size.y / 2)), 
             new Vector3(Size.x, Size.y));
+
+        public Vector3 CellToLocal(Vector2Int cell)
+        {
+            return gemTilemap.LocalToCell((Vector3Int)cell);
+        }
+
+        public Vector3 GetStartBlockPosition()
+        {
+            Vector2Int initialCellBlock = new Vector2Int(Size.x / 2, (int)Size.y + 1);
+            return CellToLocal(initialCellBlock);
+        }
 
 
         private void Awake()
@@ -49,6 +61,10 @@ namespace Game.Board
             gemTilemap.SetTile((Vector3Int)position, gem.TileBase);
         }
 
+        public bool HasGem(Vector2Int position)
+        {
+           return gemCells[position.x, position.y] != -1;
+        }
 
 
         public void OnDrawGizmosSelected()

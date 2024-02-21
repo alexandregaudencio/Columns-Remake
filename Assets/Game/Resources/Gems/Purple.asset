@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd248153d617e044692ae498bf11a6d0, type: 3}
   m_Name: Purple
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 6
+  <Type>k__BackingField: 5
   <Sprite>k__BackingField: {fileID: 21300000, guid: 157c1b039b5ef7b419072bdf6a77dc13, type: 3}
   <TileBase>k__BackingField: {fileID: 11400000, guid: eb9943ad0567efc439a45aed6c8cb316, type: 2}

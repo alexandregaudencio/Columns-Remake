@@ -19,13 +19,27 @@ namespace Game.Board
                 Mathf.RoundToInt(transform.position.x), 
                 Mathf.RoundToInt(transform.position.y));
 
-        public Dictionary<Vector2Int, Gem> PositionGemConfig => new()
+        public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
             { Vec2IntPosition+Vector2Int.up   ,sequence.GemUp },
             { Vec2IntPosition+Vector2Int.zero ,sequence.GemMiddle },
             { Vec2IntPosition+Vector2Int.down ,sequence.GemDown }
 
         };
+
+        public KeyValuePair<Vector2Int, Gem> GetPositionGemPair(int index)
+        {
+            int i = 0;
+            foreach(KeyValuePair<Vector2Int,Gem> pair in PositionGemPair)
+            {
+                if(i == index) return pair;
+                i++;
+            }
+            throw new ArgumentOutOfRangeException("index out of range. try index beetween 0 to 2");
+            
+        }
+
+
 
 
         private void Awake()
@@ -52,7 +66,6 @@ namespace Game.Board
             sequence.SwitchGems();
             UpdateSprites();
         }
-
 
 
 
