@@ -10,7 +10,7 @@ namespace Game
         {
 
             Vector2Int floorPosition = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
-            return (Vector2Int)BoardController.Instance.gemTilemap.WorldToCell(position);
+            return (Vector2Int)BoardController.Instance.gemTilemap.LocalToCell(position);
         }
 
 

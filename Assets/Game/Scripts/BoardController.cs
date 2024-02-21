@@ -27,7 +27,7 @@ namespace Game.Board
 
         public Vector3 GetStartBlockPosition()
         {
-            Vector2Int initialCellBlock = new Vector2Int(Size.x / 2, (int)Size.y + 1);
+            Vector2Int initialCellBlock = new Vector2Int(Size.x / 2, (int)Size.y);
             return CellToLocal(initialCellBlock);
         }
 
@@ -66,6 +66,16 @@ namespace Game.Board
 
         public bool HasGem(Vector2Int position)
         {
+            if(gemCells.GetLength(1) < position.y)
+            {
+                Debug.Log("está fora");
+
+            } else
+            {
+                Debug.Log("está DENTRO");
+
+            }
+            if (gemCells.GetLength(1) < position.y) return false;
            return gemCells[position.x, position.y] != -1;
         }
 

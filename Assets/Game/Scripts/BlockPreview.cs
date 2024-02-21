@@ -35,9 +35,9 @@ namespace Game.Board
 
         public void SetPreview(Sequence sequence)
         {
-            renderes[0].sprite = sequence.GemUp.Sprite;
-            renderes[1].sprite = sequence.GemMiddle.Sprite;
-            renderes[2].sprite = sequence.GemDown.Sprite;
+            renderes[0].sprite = sequence.Gem2.Sprite;
+            renderes[1].sprite = sequence.Gem1.Sprite;
+            renderes[2].sprite = sequence.Gem0.Sprite;
         }
     }
 }

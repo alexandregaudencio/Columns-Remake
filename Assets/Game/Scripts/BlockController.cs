@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Game.Board
 {
+    /// <summary>
+    /// CONTROLA UM BLOCO DE GEMAS QUE VAI CAINDO NO JOGO.
+    /// </summary>
     [RequireComponent(typeof(GemBlock))]
     public class BlockController: MonoBehaviour
     {
@@ -108,10 +111,14 @@ namespace Game.Board
 
         public bool HasFreePositionOnBoard(Vector2 positionDown)
         {
-            Vector2 targetPositionDown = (Vector2)GemBlock.PointUnderRight + positionDown;
+            foreach(Vector2Int gemPosition in GemBlock.PositionGemPair.Keys)
+            {
+                
+                if (BoardController.Instance.HasGem(gemPosition)) return false;
+            }
 
 
-            if (targetPositionDown.y < BoardController.Instance.Bounds.min.y) return false;
+            //if (targetPositionDown.y < BoardController.Instance.Bounds.min.y) return false;
 
 
             //Vector2Int gem2downPosition = GemBlock.GetPositionGemPair(2).Key + new Vector2Int((int)positionDown.x, Mathf.FloorToInt(positionDown.y));

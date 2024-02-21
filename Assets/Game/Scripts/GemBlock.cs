@@ -6,6 +6,9 @@ using System;
 
 namespace Game.Board
 {
+    /// <summary>
+    /// UM BLOCO DE 3 GEMAS
+    /// </summary>
     public class GemBlock : MonoBehaviour
     {
         private List<SpriteRenderer> gemRenderes;
@@ -13,13 +16,14 @@ namespace Game.Board
         public Vector3 PointUnderLeft => new Vector3(Bounds.min.x, Bounds.min.y);
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
 
-        private Gems.Sequence sequence;
-
+        private Sequence sequence;
+        //public Vector2Int PositionInt => new Vector2Int(transform.localPosition.x, transform.localPosition.y);
+        public Vector2Int LocalPositionInt => new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
-            {transform.position.ToCell()+Vector2Int.up*2   ,sequence.GemUp },
-            {transform.position.ToCell()+Vector2Int.up ,sequence.GemMiddle },
-            {transform.position.ToCell()+Vector2Int.zero ,sequence.GemDown }
+            {transform.localPosition.ToCell()+Vector2Int.up*2   ,sequence.Gem2 },
+            {transform.localPosition.ToCell()+Vector2Int.up ,sequence.Gem1 },
+            {transform.localPosition.ToCell()+Vector2Int.zero ,sequence.Gem0 }
 
         };
 
@@ -52,9 +56,9 @@ namespace Game.Board
 
         private void UpdateSprites()
         {
-            gemRenderes[0].sprite = sequence.GemUp.Sprite;
-            gemRenderes[1].sprite = sequence.GemMiddle.Sprite;
-            gemRenderes[2].sprite = sequence.GemDown.Sprite;
+            gemRenderes[0].sprite = sequence.Gem2.Sprite;
+            gemRenderes[1].sprite = sequence.Gem1.Sprite;
+            gemRenderes[2].sprite = sequence.Gem0.Sprite;
         }
 
         public void SwitchSequence()

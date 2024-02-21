@@ -33,9 +33,9 @@ namespace Game.Board.Gems
         private Sequence GenerateSequence()
         {
             Sequence sequence = new Sequence();
-            sequence.GemUp = GemProvider.Instance.GetGemRandomly();
-            sequence.GemMiddle = GemProvider.Instance.GetGemRandomly();
-            sequence.GemDown = GemProvider.Instance.GetGemRandomly();
+            sequence.Gem2 = GemProvider.Instance.GetGemRandomly();
+            sequence.Gem1 = GemProvider.Instance.GetGemRandomly();
+            sequence.Gem0 = GemProvider.Instance.GetGemRandomly();
             return sequence;
 
 

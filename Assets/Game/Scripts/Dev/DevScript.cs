@@ -3,7 +3,9 @@
 
 using Game.Board;
 using Game.Board.Gems;
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Dev
@@ -34,9 +36,12 @@ namespace Game.Dev
                 Print(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            Print("Cel: " + BlockController.Instance.transform.position.ToCell());
-            Print("Pos: "+BlockController.Instance.transform.position.ToString());
-            Print("Local Pos: "+BlockController.Instance.transform.localPosition.ToString());
+            Print("Local Pos: "+BlockController.Instance.GemBlock.LocalPositionInt);
+
+            Print("TIME SCALE: "+ Time.timeScale.ToString("F"));
+
+            float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale,0, 1);
+            Time.timeScale = timeScale;
 
         }
 
@@ -47,6 +52,8 @@ namespace Game.Dev
 
         }
 
+
+        
 
     }
 }
