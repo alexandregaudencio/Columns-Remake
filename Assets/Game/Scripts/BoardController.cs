@@ -2,6 +2,7 @@ using Game.Board.Gems;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 
 namespace Game.Board
@@ -9,7 +10,7 @@ namespace Game.Board
     public class BoardController : MonoBehaviour
     {
         [field: SerializeField] public Vector2Int Size { get; private set; } = new Vector2Int(7, 13);
-        [SerializeField] private Tilemap gemTilemap;
+        [field: SerializeField] public Tilemap gemTilemap { get; private set; }
 
         public int[,] gemCells;
         public static BoardController Instance { get; private set; }
@@ -21,6 +22,8 @@ namespace Game.Board
         {
             return gemTilemap.LocalToCell((Vector3Int)cell);
         }
+
+        
 
         public Vector3 GetStartBlockPosition()
         {

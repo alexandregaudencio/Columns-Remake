@@ -9,34 +9,30 @@ namespace Game.Board
     public class GemBlock : MonoBehaviour
     {
         private List<SpriteRenderer> gemRenderes;
-        public Bounds Bounds => new Bounds(transform.position, new Vector3(1, 3));
+        public Bounds Bounds => new Bounds(transform.position+Vector3.up, new Vector3(1, 3));
         public Vector3 PointUnderLeft => new Vector3(Bounds.min.x, Bounds.min.y);
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
 
-        private Sequence sequence;
-        public Vector2Int Vec2IntPosition => 
-            new Vector2Int(
-                Mathf.RoundToInt(transform.position.x), 
-                Mathf.RoundToInt(transform.position.y));
+        private Gems.Sequence sequence;
 
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
-            { Vec2IntPosition+Vector2Int.up   ,sequence.GemUp },
-            { Vec2IntPosition+Vector2Int.zero ,sequence.GemMiddle },
-            { Vec2IntPosition+Vector2Int.down ,sequence.GemDown }
+            {transform.position.ToCell()+Vector2Int.up*2   ,sequence.GemUp },
+            {transform.position.ToCell()+Vector2Int.up ,sequence.GemMiddle },
+            {transform.position.ToCell()+Vector2Int.zero ,sequence.GemDown }
 
         };
 
         public KeyValuePair<Vector2Int, Gem> GetPositionGemPair(int index)
         {
             int i = 0;
-            foreach(KeyValuePair<Vector2Int,Gem> pair in PositionGemPair)
+            foreach (KeyValuePair<Vector2Int, Gem> pair in PositionGemPair)
             {
-                if(i == index) return pair;
+                if (i == index) return pair;
                 i++;
             }
             throw new ArgumentOutOfRangeException("index out of range. try index beetween 0 to 2");
-            
+
         }
 
 
@@ -47,7 +43,7 @@ namespace Game.Board
             gemRenderes = GetComponentsInChildren<SpriteRenderer>().ToList();
         }
 
-        public void SetupBlock(Sequence sequence)
+        public void SetupBlock(Gems.Sequence sequence)
         {
             this.sequence = sequence;
             UpdateSprites();

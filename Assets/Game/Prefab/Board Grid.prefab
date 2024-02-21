@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 303890340674348959}
   - component: {fileID: 6494222682830631843}
   m_Layer: 0
-  m_Name: GemCellsTilempap
+  m_Name: GemTilempap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Size>k__BackingField: {x: 7, y: 13}
-  gemTilemap: {fileID: 303890340674348959}
+  <gemTilemap>k__BackingField: {fileID: 303890340674348959}
 --- !u!1001 &1287739163976766081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1349,7 +1349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5571092880791179531, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5571092880791179531, guid: a7bc63862dec8f241aaa12ab4a380d13, type: 3}
       propertyPath: m_LocalPosition.y

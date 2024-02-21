@@ -34,17 +34,16 @@ namespace Game.Dev
                 Print(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            float blockY = (BlockController.Instance.GemBlock.PointUnderLeft.y + BlockController.Instance.GemBlock.PointUnderRight.y) / 2;
-            Print("blocky: " + blockY.ToString());
-            Print("blocky floor: " + Mathf.FloorToInt(blockY).ToString());
-            Print(BlockController.Instance.GemBlock.GetPositionGemPair(2).ToString());
+            Print("Cel: " + BlockController.Instance.transform.position.ToCell());
+            Print("Pos: "+BlockController.Instance.transform.position.ToString());
+            Print("Local Pos: "+BlockController.Instance.transform.localPosition.ToString());
 
         }
 
 
         private void Print(string message)
         {
-            GUI.Label(new Rect(0, ymais20, 200, 20), message);
+            GUI.Label(new Rect(0, ymais20, 300, 20), message);
 
         }
 

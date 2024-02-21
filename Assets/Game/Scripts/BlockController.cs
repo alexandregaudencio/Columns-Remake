@@ -99,7 +99,6 @@ namespace Game.Board
 
         public bool IsValidMovement(Vector2 direction)
         {
-
             if (GemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
             if (GemBlock.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
             if(GemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
@@ -141,7 +140,7 @@ namespace Game.Board
         private void OnDrawGizmos()
         {
             if (GemBlock == null) return;
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.cyan ;
             Gizmos.DrawLine(GemBlock.PointUnderLeft, GemBlock.PointUnderRight);
         }
 
