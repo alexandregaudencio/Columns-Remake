@@ -1,4 +1,3 @@
-using Game.Board.Gems;
 using Game.Player;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,21 +75,23 @@ namespace Game.Board
                 GemBlock.SwitchSequence();
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
 
-            }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            //TODO: cleanup this code
+            if(GemBlock.TimeStoppedInCell > 1)
             {
-               BoardController.Instance.SetGemsAuto();
+                BoardController.Instance.SetGemsAuto();
                 sessionProperties.SetNextSequenceIndex();
             }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+               BoardController.Instance.SetGemsAuto();
+               sessionProperties.SetNextSequenceIndex();
+            }
+            //
 
 
         }
-
-
 
         private void OnSequenceIndexUpdate(int _)
         {

@@ -3,9 +3,7 @@
 
 using Game.Board;
 using Game.Board.Gems;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Dev
@@ -24,11 +22,13 @@ namespace Game.Dev
             }
         }
 
+
+
         private void OnGUI()
         {
             if (!showShortcuts) return;
             y = 0;
-            Print("ESC: Change to next block.");
+            Print("UP arrow: Change to next block.");
             Print("SPACE: Switch gem.");
             Print("Arrows: Move block.");
             foreach (KeyValuePair<Vector2Int, Gem> pairs in BlockController.Instance.GemBlock.PositionGemPair)
@@ -42,7 +42,11 @@ namespace Game.Dev
 
             float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale,0, 1);
             Time.timeScale = timeScale;
-
+            if (BlockController.Instance.GemBlock.TimeStoppedInCell != 0) Print("Time in cell: "+BlockController.Instance.GemBlock.TimeStoppedInCell.ToString("F"));
+      
+        
+        
+        
         }
 
 

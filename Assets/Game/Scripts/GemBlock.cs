@@ -11,13 +11,16 @@ namespace Game.Board
     public class GemBlock : MonoBehaviour
     {
         [SerializeField] private List<SpriteRenderer> gemRenderes;
-        public Bounds Bounds => new Bounds(transform.position+Vector3.up, new Vector3(1, 3));
+        public Bounds Bounds => new Bounds(transform.position + Vector3.up, new Vector3(1, 3));
         public Vector3 PointUnderLeft => new Vector3(Bounds.min.x, Bounds.min.y);
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
 
         private Sequence sequence;
-        //public Vector2Int PositionInt => new Vector2Int(transform.localPosition.x, transform.localPosition.y);
+
         public Vector2Int LocalPositionInt => new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
+        public float previousYLocalPosition { get; private set; } = 0;
+
+        public float TimeStoppedInCell { get; private set; } = 0;
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
             {transform.localPosition.ToCell()+Vector2Int.up*2   ,sequence.Gem2 },
@@ -37,6 +40,23 @@ namespace Game.Board
             throw new ArgumentOutOfRangeException("index out of range. try index beetween 0 to 2");
 
         }
+
+
+        private void Update()
+        {
+            if (transform.localPosition.y == previousYLocalPosition)
+            {
+                TimeStoppedInCell += Time.deltaTime;
+            }
+            else
+            {
+                previousYLocalPosition = transform.localPosition.y;
+                TimeStoppedInCell = 0;
+            }
+
+        }
+
+
 
 
         public void SetupBlock(Gems.Sequence sequence)

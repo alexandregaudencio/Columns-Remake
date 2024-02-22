@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDownSpeed: 10
-  descentSpeed: 1
+  descentSpeed: 0.7
   sessionProperties: {fileID: 0}
 --- !u!1 &3730575273897895714
 GameObject:
