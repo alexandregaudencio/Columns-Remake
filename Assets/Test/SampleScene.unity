@@ -469,6 +469,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597987411}
     m_Modifications:
+    - target: {fileID: 876372711223738520, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+    - target: {fileID: 876372711223738520, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 876372711223738520, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 072c49e26ece8844090bda5055532ce9, type: 2}
     - target: {fileID: 1169454088124646176, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: sessionProperties
       value: 
@@ -477,6 +489,14 @@ PrefabInstance:
       propertyPath: sessionProperties
       value: 
       objectReference: {fileID: 866693286}
+    - target: {fileID: 3019289736714169828, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 072c49e26ece8844090bda5055532ce9, type: 2}
+    - target: {fileID: 3386248970087506914, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 072c49e26ece8844090bda5055532ce9, type: 2}
     - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.402519
