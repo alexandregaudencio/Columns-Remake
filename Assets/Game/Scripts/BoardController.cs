@@ -2,7 +2,7 @@ using Game.Board.Gems;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 
 namespace Game.Board
@@ -42,8 +42,6 @@ namespace Game.Board
             gemCells = new int[Size.x, Size.y];
             ResetGemsInCells();
 
-            SetGemTile(new Vector2Int(Random.Range(0, 7), Random.Range(0, 13)), GemProvider.Instance.GetGemRandomly());
-
         }
 
         private void ResetGemsInCells()
@@ -58,26 +56,29 @@ namespace Game.Board
 
         }
 
-        public void SetGemTile(Vector2Int position, Gem gem)
+        public void SetGemsAuto()
         {
-            gemCells[position.x, position.y] = gem.Index;
-            gemTilemap.SetTile((Vector3Int)position, gem.TileBase);
+            SetGemTile(BlockController.Instance.GemBlock.PositionGemPair);
+        }
+
+
+        public void SetGemTile(Dictionary<Vector2Int, Gem> gems)
+        {
+            foreach (KeyValuePair<Vector2Int, Gem> gemProperties in gems)
+            {
+                gemCells[gemProperties.Key.x, gemProperties.Key.y] = gemProperties.Value.Index;
+                gemTilemap.SetTile((Vector3Int)gemProperties.Key, gemProperties.Value.TileBase);
+            }
+
         }
 
         public bool HasGem(Vector2Int position)
         {
-            if(gemCells.GetLength(1) < position.y)
-            {
-                Debug.Log("está fora");
+            if (position.y >= Size.y) return false;
 
-            } else
-            {
-                Debug.Log("está DENTRO");
-
-            }
-            if (gemCells.GetLength(1) < position.y) return false;
            return gemCells[position.x, position.y] != -1;
         }
+
 
 
         public void OnDrawGizmosSelected()

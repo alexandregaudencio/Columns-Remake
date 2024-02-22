@@ -61,6 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46d82048576f504498aa5f32e7a0a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gemRenderes:
+  - {fileID: 1382466141107573318}
+  - {fileID: 3600731841884565820}
+  - {fileID: 3954351735765090106}
 --- !u!114 &4047848058156948250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a509a2a66237143aa213aae2f0996e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemBlock: {fileID: 5046879060822364231}
   forceDownSpeed: 10
   descentSpeed: 1
   sessionProperties: {fileID: 0}
@@ -88,7 +91,7 @@ GameObject:
   - component: {fileID: 5437307810057028774}
   - component: {fileID: 3954351735765090106}
   m_Layer: 0
-  m_Name: PieceDown
+  m_Name: Piece (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +175,7 @@ GameObject:
   - component: {fileID: 4928406250351224695}
   - component: {fileID: 3600731841884565820}
   m_Layer: 0
-  m_Name: PieceMiddle
+  m_Name: Piece (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +259,7 @@ GameObject:
   - component: {fileID: 5431700497174038714}
   - component: {fileID: 1382466141107573318}
   m_Layer: 0
-  m_Name: PieceUp
+  m_Name: Piece (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

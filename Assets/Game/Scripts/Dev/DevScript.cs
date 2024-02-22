@@ -37,7 +37,7 @@ namespace Game.Dev
             }
 
             Print("Local Pos: "+BlockController.Instance.GemBlock.LocalPositionInt);
-
+            Print("");
             Print("TIME SCALE: "+ Time.timeScale.ToString("F"));
 
             float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale,0, 1);

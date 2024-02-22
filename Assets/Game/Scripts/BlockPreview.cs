@@ -1,5 +1,4 @@
 using Game.Player;
-using System;
 using UnityEngine;
 using Sequence = Game.Board.Gems.Sequence;
 

@@ -1,6 +1,5 @@
 using UnityEngine;
 using Game.Board.Gems;
-using System.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -11,7 +10,7 @@ namespace Game.Board
     /// </summary>
     public class GemBlock : MonoBehaviour
     {
-        private List<SpriteRenderer> gemRenderes;
+        [SerializeField] private List<SpriteRenderer> gemRenderes;
         public Bounds Bounds => new Bounds(transform.position+Vector3.up, new Vector3(1, 3));
         public Vector3 PointUnderLeft => new Vector3(Bounds.min.x, Bounds.min.y);
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
@@ -39,13 +38,6 @@ namespace Game.Board
 
         }
 
-
-
-
-        private void Awake()
-        {
-            gemRenderes = GetComponentsInChildren<SpriteRenderer>().ToList();
-        }
 
         public void SetupBlock(Gems.Sequence sequence)
         {

@@ -42,10 +42,7 @@ namespace Game.Player
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetNextSequenceIndex();
-            }
+
         }
 
     }

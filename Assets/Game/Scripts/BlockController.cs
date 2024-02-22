@@ -1,6 +1,7 @@
 using Game.Board.Gems;
 using Game.Player;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Board
@@ -9,11 +10,11 @@ namespace Game.Board
     /// CONTROLA UM BLOCO DE GEMAS QUE VAI CAINDO NO JOGO.
     /// </summary>
     [RequireComponent(typeof(GemBlock))]
-    public class BlockController: MonoBehaviour
+    public class BlockController : MonoBehaviour
     {
         public GemBlock GemBlock { get; private set; }
         [SerializeField] private float forceDownSpeed = 10;
-        [SerializeField] [Min(0.1f)] float descentSpeed = 0.1f;
+        [SerializeField][Min(0.1f)] float descentSpeed = 0.1f;
 
         [SerializeField] private PlayerSessionProperties sessionProperties;
         public static BlockController Instance { get; private set; }
@@ -31,6 +32,7 @@ namespace Game.Board
         private void OnEnable()
         {
             sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
+            
         }
 
         private void OnDisable()
@@ -42,11 +44,10 @@ namespace Game.Board
         private void FixedUpdate()
         {
             Vector2 positionDown = Vector2.down * descentSpeed * Time.fixedDeltaTime;
-            Debug.Log(HasFreePositionOnBoard(positionDown));
 
-            if (HasFreePositionOnBoard(positionDown))
+            if (IsTargetCellEmpty(positionDown))
             {
-                Move(positionDown);
+                TryMove(positionDown);
 
             }
 
@@ -54,38 +55,36 @@ namespace Game.Board
 
         public void Update()
         {
-            
+
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Move(Vector2.left);
+                TryMove(Vector2.left);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                Move(Vector2.right);
+                TryMove(Vector2.right);
 
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                Move(Vector2.down * forceDownSpeed * Time.deltaTime);
+                TryMove(Vector2.down * forceDownSpeed * Time.deltaTime);
             }
 
-            if(Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 GemBlock.SwitchSequence();
             }
 
-
-
-
-
-
-
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                foreach(KeyValuePair<Vector2Int, Gem> positionGemPair in GemBlock.PositionGemPair)
-                {
-                    BoardController.Instance.SetGemTile(positionGemPair.Key, positionGemPair.Value);
-                }
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+               BoardController.Instance.SetGemsAuto();
+                sessionProperties.SetNextSequenceIndex();
             }
 
 
@@ -104,25 +103,25 @@ namespace Game.Board
         {
             if (GemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
             if (GemBlock.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
-            if(GemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
+            if (GemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
             return true;
 
         }
 
-        public bool HasFreePositionOnBoard(Vector2 positionDown)
+        public bool IsTargetCellEmpty(Vector2 direction)
         {
-            foreach(Vector2Int gemPosition in GemBlock.PositionGemPair.Keys)
+            List<Vector2Int> gemPosition = GemBlock.PositionGemPair.Keys.ToList();
+            foreach (Vector2Int position in gemPosition)
             {
-                
-                if (BoardController.Instance.HasGem(gemPosition)) return false;
+                if (BoardController.Instance.HasGem(position + direction.ToInt())) return false;
             }
 
-
-            //if (targetPositionDown.y < BoardController.Instance.Bounds.min.y) return false;
-
-
-            //Vector2Int gem2downPosition = GemBlock.GetPositionGemPair(2).Key + new Vector2Int((int)positionDown.x, Mathf.FloorToInt(positionDown.y));
-            //if(BoardController.Instance.HasGem(gem2downPosition)) return false;
+            //pra evitar que haja movimentos quando tem pedras acima.
+            //Vector2 positionAboveGem2 = gemPosition[0] + Vector2Int.up;
+            //if (BoardController.Instance.HasGem(positionAboveGem2.ToInt()))
+            //{
+            //    return false;
+            //}
 
             return true;
 
@@ -137,9 +136,10 @@ namespace Game.Board
 
 
 
-        public void Move(Vector2 direction)
+        public void TryMove(Vector2 direction)
         {
             if (!IsValidMovement(direction)) return;
+            if (!IsTargetCellEmpty(direction)) return;
             transform.position += (Vector3)direction;
         }
 
@@ -147,7 +147,7 @@ namespace Game.Board
         private void OnDrawGizmos()
         {
             if (GemBlock == null) return;
-            Gizmos.color = Color.cyan ;
+            Gizmos.color = Color.cyan;
             Gizmos.DrawLine(GemBlock.PointUnderLeft, GemBlock.PointUnderRight);
         }
 

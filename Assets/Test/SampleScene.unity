@@ -477,14 +477,6 @@ PrefabInstance:
       propertyPath: sessionProperties
       value: 
       objectReference: {fileID: 866693286}
-    - target: {fileID: 2929693134424509404, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
-      propertyPath: m_Name
-      value: Piece (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225610346406655484, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
-      propertyPath: m_Name
-      value: Piece (0)
-      objectReference: {fileID: 0}
     - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.402519
@@ -525,10 +517,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6057768064248785263, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
-      propertyPath: m_Name
-      value: Piece (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 6081908050282781284, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2
@@ -540,10 +528,6 @@ PrefabInstance:
     - target: {fileID: 6585167177158063529, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
-      propertyPath: <Size>k__BackingField.y
-      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: <GemTilemap>k__BackingField
