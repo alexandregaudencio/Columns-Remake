@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _OUTLINEENABLED_ON
   - _OUTLINEMODE_SOLID
   - _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
   - _OUTLINESHAPE_CONTOUR
@@ -82,7 +83,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _OutlineMode: 0
     - _OutlinePosition: 0
     - _OutlineShape: 0
@@ -93,7 +94,7 @@ Material:
     - _Thickness: 10
     - _TileMode: 0
     - _UVSec: 0
-    - _Weight: 0.415
+    - _Weight: 0.492
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
