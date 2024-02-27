@@ -1,10 +1,17 @@
 using Game.Board;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Game
 {
     public static class CellUtils
     {
+
+        public static Vector2Int Floor(this Vector2 vector2)
+        {
+            return new Vector2Int(Mathf.FloorToInt(vector2.x), Mathf.FloorToInt(vector2.y));
+        }
 
         public static Vector2Int ToInt(this Vector2 vector2)
         {
@@ -20,6 +27,17 @@ namespace Game
             Vector2Int floorPosition = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
             return (Vector2Int)BoardController.Instance.gemTilemap.LocalToCell(position);
         }
+
+
+        public static bool IsCellMatch(this Vector2Int[] grid, List<Vector2Int> startupCells, out List<Vector2Int> match)
+        {
+            match = new();
+
+
+
+            return false;
+        }
+
 
 
     }

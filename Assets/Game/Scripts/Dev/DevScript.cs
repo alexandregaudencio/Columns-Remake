@@ -36,7 +36,9 @@ namespace Game.Dev
                 Print(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            Print("Local Pos: "+BlockController.Instance.GemBlock.LocalPositionInt);
+            Print("Block Pos: " + BlockController.Instance.GemBlock.transform.localPosition);
+            Print("block Pos Int: " + BlockController.Instance.GemBlock.LocalPositionInt);
+
             Print("");
             Print("TIME SCALE: "+ Time.timeScale.ToString("F"));
 

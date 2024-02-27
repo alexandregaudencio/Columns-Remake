@@ -21,6 +21,8 @@ namespace Game.Board
         public float previousYLocalPosition { get; private set; } = 0;
 
         public float TimeStoppedInCell { get; private set; } = 0;
+
+        //trocar por PIECE (peças relativas ao game ojbects, com posição na celula do board, gema, relative position ao block e etc).
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
             {transform.localPosition.ToCell()+Vector2Int.up*2   ,sequence.Gem2 },

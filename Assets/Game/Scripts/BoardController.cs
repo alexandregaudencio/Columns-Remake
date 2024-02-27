@@ -1,4 +1,5 @@
 using Game.Board.Gems;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -17,6 +18,8 @@ namespace Game.Board
             (transform.position + new Vector3(Size.x / 2, Size.y / 2)), 
             new Vector3(Size.x, Size.y));
 
+        public event Action<List<Vector2Int>> Cellsfilled;
+
         public Vector3 CellToLocal(Vector2Int cell)
         {
             return gemTilemap.LocalToCell((Vector3Int)cell);
@@ -29,6 +32,7 @@ namespace Game.Board
             Vector2Int initialCellBlock = new Vector2Int(Size.x / 2, (int)Size.y);
             return CellToLocal(initialCellBlock);
         }
+
 
 
         private void Awake()
@@ -68,6 +72,9 @@ namespace Game.Board
                 gemCells[gemProperties.Key.x, gemProperties.Key.y] = gemProperties.Value.Index;
                 gemTilemap.SetTile((Vector3Int)gemProperties.Key, gemProperties.Value.TileBase);
             }
+            List<Vector2Int> cells = new List<Vector2Int>(gems.Keys);
+            Cellsfilled?.Invoke(cells);
+
 
         }
 

@@ -1,6 +1,7 @@
 using Game.Player;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Game.Board
@@ -111,18 +112,15 @@ namespace Game.Board
 
         public bool IsTargetCellEmpty(Vector2 direction)
         {
-            List<Vector2Int> gemPosition = GemBlock.PositionGemPair.Keys.ToList();
-            foreach (Vector2Int position in gemPosition)
-            {
-                if (BoardController.Instance.HasGem(position + direction.ToInt())) return false;
-            }
-
-            //pra evitar que haja movimentos quando tem pedras acima.
-            //Vector2 positionAboveGem2 = gemPosition[0] + Vector2Int.up;
-            //if (BoardController.Instance.HasGem(positionAboveGem2.ToInt()))
+            //List<Vector2Int> gemPosition = GemBlock.PositionGemPair.Keys.ToList();
+            //foreach (Vector2Int position in gemPosition)
             //{
-            //    return false;
+            //    Vector2 targetPosition = (position + direction).ToInt();
+            //    if (BoardController.Instance.HasGem(targetPosition.ToInt())) return false;
             //}
+
+            if (BoardController.Instance.HasGem((Vector2Int)(transform.localPosition + (Vector3)direction).ToInt())) return false;
+
 
             return true;
 
@@ -154,6 +152,17 @@ namespace Game.Board
 
 
 
+        //private void OnGUI()
+        //{
+
+        //    if (Selection.activeGameObject != gameObject) return;
+        //    Vector2 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        //    GUI.Label(new Rect(screenPoint, Vector2.one * 300), GemBlock.GetPositionGemPair(0).Key.ToString());
+            
+        //}
+
+
     }
+
 
 }
