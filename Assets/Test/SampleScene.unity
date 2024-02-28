@@ -354,6 +354,22 @@ PrefabInstance:
       propertyPath: maxGemType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
+      propertyPath: gems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4440058ed9eaa6445a3b7a285ee3c70a, type: 2}
+    - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
+      propertyPath: gems.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d4569a2a551ceb14884cae76882b83e7, type: 2}
+    - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
+      propertyPath: gems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6a1b1074ea199041bac35efb05f1552, type: 2}
+    - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
+      propertyPath: gems.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: cbc7bdd866e41b246a486f91ec4f71a1, type: 2}
     - target: {fileID: 4277419703709563664, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.631311
@@ -648,6 +664,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f2b2e2aa21d94db4a9bf2d2871f004cc, type: 2}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: <Size>k__BackingField.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: <Size>k__BackingField.y
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 8689801723763614389, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Enabled
       value: 1

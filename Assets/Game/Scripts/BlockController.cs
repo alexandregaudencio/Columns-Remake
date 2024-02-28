@@ -17,6 +17,7 @@ namespace Game.Board
         [SerializeField][Min(0.1f)] float descentSpeed = 0.1f;
 
         [SerializeField] private PlayerSessionProperties sessionProperties;
+
         public static BlockController Instance { get; private set; }
 
         private void Awake()
@@ -44,7 +45,6 @@ namespace Game.Board
         private void FixedUpdate()
         {
             Vector2 positionDown = Vector2.down * descentSpeed * Time.fixedDeltaTime;
-
             if (IsTargetCellEmpty(positionDown))
             {
                 TryMove(positionDown);
@@ -79,7 +79,7 @@ namespace Game.Board
 
 
             //TODO: cleanup this code
-            if(GemBlock.TimeStoppedInCell > 1)
+            if(GemBlock.StoppedTimeOver)
             {
                 BoardController.Instance.SetGemsAuto();
                 sessionProperties.SetNextSequenceIndex();
@@ -127,12 +127,10 @@ namespace Game.Board
 
         }
 
-
         public void ResetPosition()
         {
             transform.localPosition = BoardController.Instance.GetStartBlockPosition();
         }
-
 
 
         public void TryMove(Vector2 direction)

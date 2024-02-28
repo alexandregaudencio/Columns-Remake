@@ -81,7 +81,6 @@ namespace Game.Board
         public bool HasGem(Vector2Int position)
         {
             if (position.y >= Size.y) return false;
-
            return gemCells[position.x, position.y] != -1;
         }
 

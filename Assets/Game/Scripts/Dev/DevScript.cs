@@ -28,7 +28,7 @@ namespace Game.Dev
         {
             if (!showShortcuts) return;
             y = 0;
-            Print("UP arrow: Change to next block.");
+            Print("UP arrow: Set Gems in grid cells.");
             Print("SPACE: Switch gem.");
             Print("Arrows: Move block.");
             foreach (KeyValuePair<Vector2Int, Gem> pairs in BlockController.Instance.GemBlock.PositionGemPair)
@@ -36,15 +36,15 @@ namespace Game.Dev
                 Print(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            Print("Block Pos: " + BlockController.Instance.GemBlock.transform.localPosition);
-            Print("block Pos Int: " + BlockController.Instance.GemBlock.LocalPositionInt);
+            Print("Block pos: " + BlockController.Instance.GemBlock.transform.localPosition);
+            Print("Block pos Int: " + BlockController.Instance.GemBlock.LocalPositionInt);
 
             Print("");
             Print("TIME SCALE: "+ Time.timeScale.ToString("F"));
 
             float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale,0, 1);
             Time.timeScale = timeScale;
-            if (BlockController.Instance.GemBlock.TimeStoppedInCell != 0) Print("Time in cell: "+BlockController.Instance.GemBlock.TimeStoppedInCell.ToString("F"));
+            if (BlockController.Instance.GemBlock.RemainingStoppedTime >= 0) Print("Time in cell: "+BlockController.Instance.GemBlock.RemainingStoppedTime.ToString("F"));
       
         
         

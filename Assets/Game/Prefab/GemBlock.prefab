@@ -66,6 +66,7 @@ MonoBehaviour:
   - {fileID: 1382466141107573318}
   - {fileID: 3600731841884565820}
   - {fileID: 3954351735765090106}
+  idleTimeLimit: 1
 --- !u!114 &4047848058156948250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a509a2a66237143aa213aae2f0996e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceDownSpeed: 10
+  forceDownSpeed: 20
   descentSpeed: 0.7
   sessionProperties: {fileID: 0}
 --- !u!1 &3730575273897895714

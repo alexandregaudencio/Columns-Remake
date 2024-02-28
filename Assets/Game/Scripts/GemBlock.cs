@@ -20,8 +20,10 @@ namespace Game.Board
         public Vector2Int LocalPositionInt => new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
         public float previousYLocalPosition { get; private set; } = 0;
 
-        public float TimeStoppedInCell { get; private set; } = 0;
-
+        private float stoppedTime = 0;
+        [SerializeField][Min(0.1f)] private float idleTimeLimit = 1f;
+        public bool StoppedTimeOver => stoppedTime > idleTimeLimit;
+        public float RemainingStoppedTime => idleTimeLimit - stoppedTime;
         //trocar por PIECE (peças relativas ao game ojbects, com posição na celula do board, gema, relative position ao block e etc).
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
@@ -46,16 +48,21 @@ namespace Game.Board
 
         private void Update()
         {
+            UpdateStoppedTimeLogic();
+
+        }
+
+        public void UpdateStoppedTimeLogic()
+        {
             if (transform.localPosition.y == previousYLocalPosition)
             {
-                TimeStoppedInCell += Time.deltaTime;
+                stoppedTime += Time.deltaTime;
             }
             else
             {
                 previousYLocalPosition = transform.localPosition.y;
-                TimeStoppedInCell = 0;
+                stoppedTime = 0;
             }
-
         }
 
 
