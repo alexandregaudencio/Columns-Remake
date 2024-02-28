@@ -15,7 +15,7 @@ namespace Game.Board
         public int[,] gemCells;
         public static BoardController Instance { get; private set; }
         public Bounds Bounds => new Bounds(
-            (transform.position + new Vector3(Size.x / 2, Size.y / 2)), 
+            (transform.position + new Vector3(Size.x / 2, Size.y / 2)),
             new Vector3(Size.x, Size.y));
 
         public event Action<List<Vector2Int>> Cellsfilled;
@@ -24,8 +24,12 @@ namespace Game.Board
         {
             return gemTilemap.LocalToCell((Vector3Int)cell);
         }
+        public bool IsValidCell(Vector2Int position)
+        {
+            return (position.x >= 0 && position.y >= 0 && position.x < Size.x && position.y < Size.y);
+        }
 
-        
+
 
         public Vector3 GetStartBlockPosition()
         {
@@ -41,7 +45,7 @@ namespace Game.Board
         }
 
         private void Start()
-        {      
+        {
             gemCells = new int[Size.x, Size.y];
             ResetGemsInCells();
 
@@ -51,11 +55,11 @@ namespace Game.Board
         {
             for (int i = 0; i < gemCells.GetLength(0); i++)
             {
-                for(int j = 0; j < gemCells.GetLength(1); j++)
+                for (int j = 0; j < gemCells.GetLength(1); j++)
                 {
                     gemCells[i, j] = -1;
                 }
-            } 
+            }
 
         }
 
@@ -74,14 +78,19 @@ namespace Game.Board
             }
             List<Vector2Int> cells = new List<Vector2Int>(gems.Keys);
             Cellsfilled?.Invoke(cells);
-
-
         }
+
+        public int GetGemIndex(Vector2Int position)
+        {
+            return gemCells[position.x, position.y];
+        }
+
 
         public bool HasGem(Vector2Int position)
         {
-            if (position.y >= Size.y) return false;
-           return gemCells[position.x, position.y] != -1;
+            if (IsValidCell(position))
+                return gemCells[position.x, position.y] != -1;
+            return false;
         }
 
 
@@ -93,6 +102,8 @@ namespace Game.Board
 
 
         }
+
+
 
 
 

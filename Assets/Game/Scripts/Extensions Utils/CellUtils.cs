@@ -1,7 +1,5 @@
 using Game.Board;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Game
 {
@@ -28,15 +26,6 @@ namespace Game
             return (Vector2Int)BoardController.Instance.gemTilemap.LocalToCell(position);
         }
 
-
-        public static bool IsCellMatch(this Vector2Int[] grid, List<Vector2Int> startupCells, out List<Vector2Int> match)
-        {
-            match = new();
-
-
-
-            return false;
-        }
 
 
 

@@ -27,9 +27,9 @@ namespace Game.Board
         //trocar por PIECE (peças relativas ao game ojbects, com posição na celula do board, gema, relative position ao block e etc).
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
-            {transform.localPosition.ToCell()+Vector2Int.up*2   ,sequence.Gem2 },
-            {transform.localPosition.ToCell()+Vector2Int.up ,sequence.Gem1 },
-            {transform.localPosition.ToCell()+Vector2Int.zero ,sequence.Gem0 }
+            {transform.localPosition.ToCell()+Vector2Int.zero ,sequence.Gem0 },
+            {transform.localPosition.ToCell()+Vector2Int.up   ,sequence.Gem1 },
+            {transform.localPosition.ToCell()+Vector2Int.up*2 ,sequence.Gem2 }
 
         };
 

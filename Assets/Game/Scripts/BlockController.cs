@@ -83,7 +83,9 @@ namespace Game.Board
             {
                 BoardController.Instance.SetGemsAuto();
                 sessionProperties.SetNextSequenceIndex();
+
             }
+
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                BoardController.Instance.SetGemsAuto();
