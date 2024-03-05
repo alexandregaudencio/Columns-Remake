@@ -1221,6 +1221,7 @@ GameObject:
   - component: {fileID: 4483925474957678194}
   - component: {fileID: 743655209140673811}
   - component: {fileID: 7977456902863834027}
+  - component: {fileID: 6351040655922280598}
   m_Layer: 0
   m_Name: Board Grid
   m_TagString: Untagged
@@ -1273,6 +1274,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Size>k__BackingField: {x: 7, y: 13}
   <gemTilemap>k__BackingField: {fileID: 303890340674348959}
+--- !u!114 &6351040655922280598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021595657004258155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1709e7cf48068a44e82bbf105817866f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1287739163976766081
 PrefabInstance:
   m_ObjectHideFlags: 0
