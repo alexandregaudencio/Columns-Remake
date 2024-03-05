@@ -81,14 +81,14 @@ namespace Game.Board
             //TODO: cleanup this code
             if(GemBlock.StoppedTimeOver)
             {
-                BoardController.Instance.SetGemsAuto();
+                BoardController.Instance.SetGemBlockAuto();
                 sessionProperties.SetNextSequenceIndex();
 
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-               BoardController.Instance.SetGemsAuto();
+               BoardController.Instance.SetGemBlockAuto();
                sessionProperties.SetNextSequenceIndex();
             }
             //

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Game.Board
 {
+    //Encontra matches quando as células são preenchidas
     public class GemMatchManager : MonoBehaviour
     {
         private BoardController boardController;
@@ -119,19 +120,20 @@ namespace Game.Board
             matches = new List<Vector2Int> { gems[1] };
             matches.AddRange(FindMatch(gems[1], Vector2Int.up));
             matches.AddRange(FindMatch(gems[1], Vector2Int.down));
-
+            if (matches.Count < 2) matches.Clear();
             //gem 0: gem Lower (0,0)
             if (!matches.Contains(gems[0]))
             {
-                matches.Add(gems[0]);
-                matches.AddRange(FindMatch(gems[0], Vector2Int.down));
+                List<Vector2Int> matchToDown = FindMatch(gems[0], Vector2Int.down);
+                if (matchToDown.Count > 1) matches.Add(gems[0]);
+
             }
 
             //gem 2: gem Upper (0,2)
             if (!matches.Contains(gems[2]))
             {
-                matches.Add(gems[2]);
-                matches.AddRange(FindMatch(gems[2], Vector2Int.up));
+                List<Vector2Int> matchToUp = FindMatch(gems[2], Vector2Int.up);
+                if (matchToUp.Count > 1) matches.Add(gems[2]);
             }
             return matches.Count > 2 ? true : false;
         }
