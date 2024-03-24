@@ -1,22 +1,35 @@
+using Game.Board.Gems;
+using UnityEngine;
 
-//using UnityEngine;
+namespace Game.Board
+{
+    public class Piece : MonoBehaviour
+    {
+        [SerializeField] private Gem gem;
+        [field: SerializeField] public bool IsSpecial { get; private set; }
 
-//namespace Game.Board.Gems
-//{
-//    [System.Serializable]
-//    public class Piece
-//    {
-//        [SerializeField] private Gem gem;
-//        public Transform transform;
-//        [field: SerializeField] public bool IsSpecial { get; private set; }
-
-//        public Piece(Gem gem, Transform transform)
-//        {
-//            this.gem = gem;
-//            this.transform = transform;
-//        }
-
-//    }
+        public void SetGem(Gem gem)
+        {
+            this.gem = gem;
+        }
 
 
-//}
+        public void SetPosition(Vector2 position)
+        {
+            transform.position = position;
+        }
+
+        public void Move(Vector2 position)
+        {
+            transform.position = position;
+        }
+
+
+
+
+
+
+    }
+
+
+}

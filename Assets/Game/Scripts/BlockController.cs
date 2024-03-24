@@ -1,7 +1,4 @@
 using Game.Player;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 namespace Game.Board
@@ -121,7 +118,7 @@ namespace Game.Board
             //    if (BoardController.Instance.HasGem(targetPosition.ToInt())) return false;
             //}
 
-            if (BoardController.Instance.HasGem((Vector2Int)(transform.localPosition + (Vector3)direction).ToInt())) return false;
+            if (BoardController.Instance.Board.HasGem((Vector2Int)(transform.localPosition + (Vector3)direction).ToInt())) return false;
 
 
             return true;

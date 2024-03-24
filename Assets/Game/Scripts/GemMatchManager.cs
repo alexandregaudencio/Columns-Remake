@@ -1,5 +1,7 @@
+using Game.Board.Gems;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Board
@@ -7,29 +9,33 @@ namespace Game.Board
     //Encontra matches quando as células são preenchidas
     public class GemMatchManager : MonoBehaviour
     {
-        private BoardController boardController;
+        private Board board;
         public event Action<List<List<Vector2Int>>> Match;
         public bool Logging = false;
+
         private void Awake()
         {
-            boardController = GetComponent<BoardController>();
+            board = GetComponent<BoardController>().Board;
         }
 
         private void OnEnable()
         {
-            boardController.Cellsfilled += OnCellsFilled;
+            board.Cellsfilled += OnCellsFilleddd;
         }
+
 
 
         private void OnDisable()
         {
-            boardController.Cellsfilled -= OnCellsFilled;
+            board.Cellsfilled -= OnCellsFilleddd;
         }
 
-        private void OnCellsFilled(List<Vector2Int> gemPositions)
+        private void OnCellsFilleddd(Dictionary<Vector2Int, Gem> positionGemPairs)
         {
+            List<Vector2Int> positions = positionGemPairs.Keys.ToList();
+
             List<List<Vector2Int>> allMatches = new();
-            if (HasMatch(gemPositions, ref allMatches))
+            if (HasMatch(positions, ref allMatches))
             {
                 Match?.Invoke(allMatches);
 
@@ -41,6 +47,11 @@ namespace Game.Board
 
 
             }
+        }
+
+        private void OnCellsFilled(List<Vector2Int> gemPositions)
+        {
+
         }
 
 
@@ -142,12 +153,12 @@ namespace Game.Board
         {
             List<Vector2Int> matches = new List<Vector2Int>();
             int multiplier = 1;
-            int cellGemIndex = boardController.GetGemIndex(gemPoisition);
+            int cellGemIndex = board.GetGemIndex(gemPoisition);
 
             Vector2Int targetCell = gemPoisition + direction * multiplier;
-            while (boardController.HasGem(targetCell))
+            while (board.HasGem(targetCell))
             {
-                if (cellGemIndex == boardController.GetGemIndex(targetCell))
+                if (cellGemIndex == board.GetGemIndex(targetCell))
                 {
                     matches.Add(targetCell);
                     targetCell = gemPoisition + direction * ++multiplier;

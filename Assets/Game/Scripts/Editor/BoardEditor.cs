@@ -1,38 +1,37 @@
-
 using UnityEditor;
 using UnityEngine;
 
 namespace Game.Board
 {
-    [CustomEditor(typeof(BoardController))]
+    [CustomEditor(typeof(Board))]
     public class BoardEditor : Editor
     {
-        BoardController board;
+        BoardController boardController;
 
         private void OnEnable()
         {
-            board = (BoardController)target;
+            boardController = (BoardController)target;
         }
         private void OnDisable()
         {
-            board = null;
+            boardController = null;
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            if (board.gemCells == null) return;
+            if (boardController.Board.gemCells == null) return;
 
 
             string indexes = "";
-            for (int j = 0; j < board.gemCells.GetLength(1); j++)
+            for (int j = 0; j < boardController.Board.gemCells.GetLength(1); j++)
             {
                 string aux = "";
-                for (int i = 0; i < board.gemCells.GetLength(0); i++)
+                for (int i = 0; i < boardController.Board.gemCells.GetLength(0); i++)
                 {
 
-                    aux = string.Concat(aux, board.gemCells[i, j], "   ");
+                    aux = string.Concat(aux, boardController.Board.gemCells[i, j], "   ");
                 }
                 indexes = string.Concat(aux, "\n", indexes);
 
