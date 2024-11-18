@@ -20,17 +20,17 @@ namespace Game.Board
 
         private void OnEnable()
         {
-            board.Cellsfilled += OnCellsFilleddd;
+            board.Cellsfilled += FindMatches;
         }
 
 
 
         private void OnDisable()
         {
-            board.Cellsfilled -= OnCellsFilleddd;
+            board.Cellsfilled -= FindMatches;
         }
 
-        private void OnCellsFilleddd(Dictionary<Vector2Int, Gem> positionGemPairs)
+        private void FindMatches(Dictionary<Vector2Int, Gem> positionGemPairs)
         {
             List<Vector2Int> positions = positionGemPairs.Keys.ToList();
 
@@ -48,12 +48,6 @@ namespace Game.Board
 
             }
         }
-
-        private void OnCellsFilled(List<Vector2Int> gemPositions)
-        {
-
-        }
-
 
 
         public void Log(List<List<Vector2Int>> allMatches)

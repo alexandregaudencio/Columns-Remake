@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Game.Board.Gems
+namespace Game.Board
 {
     [System.Serializable ]
     [CreateAssetMenu()]

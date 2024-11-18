@@ -13,11 +13,10 @@ namespace Game.Board
         private GemMatchManager gemMatchManager;
         [field: SerializeField] public Tilemap gemTilemap { get; private set; }
 
-        public Piece[,] pieces;
         public static BoardController Instance { get; private set; }
 
         public Bounds Bounds => new Bounds(
-            (transform.position + new Vector3(Board.Size.x / 2, Board.Size.y / 2)),
+            (transform.localPosition + new Vector3(Board.Size.x / 2, Board.Size.y / 2)),
             new Vector3(Board.Size.x, Board.Size.y));
 
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Board
 {
-    [CustomEditor(typeof(Board))]
+    [CustomEditor(typeof(BoardController))]
     public class BoardEditor : Editor
     {
         BoardController boardController;

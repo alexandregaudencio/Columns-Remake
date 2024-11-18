@@ -12,9 +12,9 @@ namespace Game.Board
     {
         [field: SerializeField] public Vector2Int Size { get; private set; } = new Vector2Int(7, 13);
         public int[,] gemCells;
+        public Piece[,] pieces;
 
         public event Action<Dictionary<Vector2Int, Gem>> Cellsfilled;
-        //public event Action<Vector2Int> CellCleaned;
         public event Action<List<Vector2Int>> CellsCleaned;
         public Vector2Int GemBlockInitialPosition => new Vector2Int(Size.x / 2, (int)Size.y);
 
@@ -23,7 +23,6 @@ namespace Game.Board
             gemCells = new int[Size.x, Size.y];
 
         }
-
 
 
         #region Validation

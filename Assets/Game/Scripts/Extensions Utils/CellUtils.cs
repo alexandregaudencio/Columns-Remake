@@ -1,7 +1,6 @@
-using Game.Board;
 using UnityEngine;
 
-namespace Game
+namespace Game.Board
 {
     public static class CellUtils
     {
@@ -19,10 +18,9 @@ namespace Game
         {
             return new Vector3Int((int)vector.x, (int)vector.y, (int)vector.z);
         }
-        public static Vector2Int ToCell(this Vector3 position)
+        public static Vector2Int AsCell(this Vector3 position)
         {
-
-            Vector2Int floorPosition = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
+            //Vector2Int floorPosition = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
             return (Vector2Int)BoardController.Instance.gemTilemap.LocalToCell(position);
         }
 

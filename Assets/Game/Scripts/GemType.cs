@@ -1,5 +1,5 @@
 
-namespace Game.Board.Gems
+namespace Game.Board
 {
     public enum GemType
     {

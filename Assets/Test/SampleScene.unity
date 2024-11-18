@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1839735485 &230618608 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 303890340674348959, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+  m_PrefabInstance: {fileID: 7933476354298045535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb46716516876394eb5d24411652aa8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemTilemap: {fileID: 0}
+  gemTilemap: {fileID: 230618608}
+  piecePrefab: {fileID: 7367012706334779988, guid: df2f0fbeb8f569e4f86dfe2a496f0a3e, type: 3}
 --- !u!1001 &1385466669576500763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -630,6 +636,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[0].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 697821189119185303, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1169454088124646176, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: sessionProperties
       value: 
@@ -640,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 866693286}
     - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.402519
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 4483925474957678194, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_LocalPosition.y
@@ -678,6 +688,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6351040655922280598, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: Logging
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6494222682830631843, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -689,6 +703,18 @@ PrefabInstance:
     - target: {fileID: 7977456902863834027, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: <Size>k__BackingField.y
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000735591501451286, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646743952639992498, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646743952639992498, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8689801723763614389, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Enabled
