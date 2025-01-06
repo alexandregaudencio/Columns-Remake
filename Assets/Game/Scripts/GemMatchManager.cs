@@ -1,4 +1,3 @@
-using Game.Board.Gems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace Game.Board
         private Board board;
         public event Action<List<List<Vector2Int>>> Match;
         public bool Logging = false;
-
+        [SerializeField] private PiecesBoardController piecesController;
         private void Awake()
         {
             board = GetComponent<BoardController>().Board;
@@ -20,17 +19,16 @@ namespace Game.Board
 
         private void OnEnable()
         {
-            board.Cellsfilled += FindMatches;
+            piecesController.PiecesPlaced += OnPiecesPlaced;
         }
-
 
 
         private void OnDisable()
         {
-            board.Cellsfilled -= FindMatches;
+            piecesController.PiecesPlaced -= OnPiecesPlaced;
         }
 
-        private void FindMatches(Dictionary<Vector2Int, Gem> positionGemPairs)
+        private void OnPiecesPlaced(Dictionary<Vector2Int, Gem> positionGemPairs)
         {
             List<Vector2Int> positions = positionGemPairs.Keys.ToList();
 
@@ -38,11 +36,7 @@ namespace Game.Board
             if (HasMatch(positions, ref allMatches))
             {
                 Match?.Invoke(allMatches);
-
-                if (Logging)
-                {
-                    Log(allMatches);
-                }
+                Debug.Log("matching");
 
 
 
@@ -50,18 +44,18 @@ namespace Game.Board
         }
 
 
-        public void Log(List<List<Vector2Int>> allMatches)
+        public void LogMatch(List<List<Vector2Int>> allMatches)
         {
             Debug.Log("Total Matches: " + allMatches.Count);
             int i = 0;
             foreach (List<Vector2Int> matchList in allMatches)
             {
                 i++;
-                Debug.Log("mathc: " + i);
+                Debug.Log("match index: " + i);
 
                 foreach (var pos in matchList)
                 {
-                    Debug.Log(pos);
+                    Debug.Log("match pos:" + pos);
                 }
             }
         }

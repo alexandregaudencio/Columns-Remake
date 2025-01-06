@@ -6,21 +6,21 @@ namespace Game.Board
     /// <summary>
     /// CONTROLA UM BLOCO DE GEMAS QUE VAI CAINDO NO JOGO.
     /// </summary>
-    [RequireComponent(typeof(GemBlock))]
-    public class BlockController : MonoBehaviour
+    [RequireComponent(typeof(PiecesBlockController))]
+    public class PiecesBlockBehaviour : MonoBehaviour
     {
-        public GemBlock GemBlock { get; private set; }
+        public PiecesBlockController GemBlock { get; private set; }
         [SerializeField] private float forceDownSpeed = 10;
         [SerializeField][Min(0.1f)] float descentSpeed = 0.1f;
 
         [SerializeField] private PlayerSessionProperties sessionProperties;
 
-        public static BlockController Instance { get; private set; }
+        public static PiecesBlockBehaviour Instance { get; private set; }
 
         private void Awake()
         {
             Instance = this;
-            GemBlock = GetComponent<GemBlock>();
+            GemBlock = GetComponent<PiecesBlockController>();
         }
         private void Start()
         {
@@ -30,7 +30,7 @@ namespace Game.Board
         private void OnEnable()
         {
             sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
-            
+
         }
 
         private void OnDisable()
@@ -75,8 +75,8 @@ namespace Game.Board
 
 
 
-            //TODO: cleanup this code
-            if(GemBlock.StoppedTimeOver)
+            //TODO: cleanup this code. esse codigo faz as peças serem atualizadas
+            if (GemBlock.StoppedTimeOver)
             {
                 BoardController.Instance.SetGemBlockAuto();
                 sessionProperties.SetNextSequenceIndex();
@@ -85,8 +85,8 @@ namespace Game.Board
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-               BoardController.Instance.SetGemBlockAuto();
-               sessionProperties.SetNextSequenceIndex();
+                BoardController.Instance.SetGemBlockAuto();
+                sessionProperties.SetNextSequenceIndex();
             }
             //
 
@@ -155,7 +155,7 @@ namespace Game.Board
         //    if (Selection.activeGameObject != gameObject) return;
         //    Vector2 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         //    GUI.Label(new Rect(screenPoint, Vector2.one * 300), GemBlock.GetPositionGemPair(0).Key.ToString());
-            
+
         //}
 
 

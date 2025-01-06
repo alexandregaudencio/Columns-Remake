@@ -17,7 +17,7 @@ namespace ObjectPooling
             returnToPool?.Invoke(this);
         }
 
-        private void OnDisable()
+        public virtual void OnDisable()
         {
             ReturnToPool();
         }

@@ -8,7 +8,7 @@ namespace Game.Board
     /// <summary>
     /// UM BLOCO DE 3 GEMAS
     /// </summary>
-    public class GemBlock : MonoBehaviour
+    public class PiecesBlockController : MonoBehaviour
     {
         [SerializeField] private List<SpriteRenderer> gemRenderes;
         public Bounds Bounds => new Bounds(transform.position + Vector3.up, new Vector3(1, 3));

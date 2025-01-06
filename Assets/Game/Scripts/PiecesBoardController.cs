@@ -1,4 +1,5 @@
 using ObjectPooling;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -7,7 +8,7 @@ namespace Game.Board
 
 {
     //Acessa o quadro pra saber quando as celulas (cells da matriz foram modificadas)
-    public class PiecesController : MonoBehaviour
+    public class PiecesBoardController : MonoBehaviour
     {
         private Board board;
         [SerializeField] private Tilemap gemTilemap;
@@ -16,6 +17,7 @@ namespace Game.Board
         private static ObjectPool<PoolObject> objectPool;
         private List<PoolObject> objectsActive = new List<PoolObject>();
 
+        public event Action<Dictionary<Vector2Int, Gem>> PiecesPlaced = delegate { };
 
         private void Awake()
         {
@@ -44,12 +46,13 @@ namespace Game.Board
             foreach (var pair in gemPositionPairs)
             {
                 //gemTilemap.SetTile((Vector3Int)pair.Key, pair.Value.TileBase);
-                Piece piece = GetPeace((Vector2)pair.Key);
+                Piece piece = GetPiece((Vector2)pair.Key);
 
 
                 piece.Setup(pair.Value, pair.Key);
 
             }
+            PiecesPlaced?.Invoke(gemPositionPairs);
 
 
         }
@@ -60,7 +63,6 @@ namespace Game.Board
 
             foreach (var position in positions)
             {
-                Debug.Log("cleaned: " + position.ToString());
                 gemTilemap.SetTile((Vector3Int)position, null);
             }
 
@@ -69,13 +71,13 @@ namespace Game.Board
 
 
 
-        public Piece GetPeace(Vector3 position, Quaternion rotation = default)
+        public Piece GetPiece(Vector3 position, Quaternion rotation = default)
         {
             PoolObject poolObject;
 
             GameObject pieceGameObject = objectPool.PullGameObject(position, rotation, out poolObject);
             poolObject.returnToPool += (t) => { objectsActive.Remove(poolObject); };
-            
+
             objectsActive.Add(poolObject);
 
             pieceGameObject.transform.SetParent(transform);

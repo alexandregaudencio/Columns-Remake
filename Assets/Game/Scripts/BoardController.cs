@@ -9,7 +9,7 @@ namespace Game.Board
 
     public class BoardController : MonoBehaviour
     {
-        [field: SerializeField] public Board Board {  get;private set; }
+        [field: SerializeField] public Board Board { get; private set; }
         private GemMatchManager gemMatchManager;
         [field: SerializeField] public Tilemap gemTilemap { get; private set; }
 
@@ -24,14 +24,13 @@ namespace Game.Board
         {
             Instance = this;
             gemMatchManager = GetComponent<GemMatchManager>();
-
             //board.gemCells = new int[Size.x, Size.y];
 
         }
 
         private void Start()
         {
-           Board.ResetCells();
+            Board.ResetCells();
 
         }
 
@@ -50,7 +49,7 @@ namespace Game.Board
         {
 
             List<Vector2Int> singleGemPosition = positions.SelectMany(x => x).Distinct().ToList();
-            Debug.Log(singleGemPosition.Count);
+            Debug.Log("match count: " + singleGemPosition.Count);
             Board.RemoveGems(singleGemPosition);
 
         }
@@ -68,9 +67,10 @@ namespace Game.Board
         }
 
 
+        //posiciona novas gemas no bloco de peças que caem
         public void SetGemBlockAuto()
         {
-           Board.SetGemsInCells(BlockController.Instance.GemBlock.PositionGemPair);
+            Board.SetGemsInCells(PiecesBlockBehaviour.Instance.GemBlock.PositionGemPair);
         }
 
 

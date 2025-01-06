@@ -2,7 +2,6 @@
 #if UNITY_EDITOR
 
 using Game.Board;
-using Game.Board.Gems;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,44 +21,59 @@ namespace Game.Dev
             }
         }
 
-
+        public bool showCellsValue = true;
 
         private void OnGUI()
         {
             if (!showShortcuts) return;
             y = 0;
-            Print("UP arrow: Set Gems in grid cells.");
-            Print("SPACE: Switch gem.");
-            Print("Arrows: Move block.");
-            foreach (KeyValuePair<Vector2Int, Gem> pairs in BlockController.Instance.GemBlock.PositionGemPair)
+            GUILayout.BeginVertical();
+            GUILayout.Label("UP arrow: Set Gems in grid cells. SPACE: Switch gem.");
+            GUILayout.Label("Arrows: Move block.");
+            foreach (KeyValuePair<Vector2Int, Gem> pairs in PiecesBlockBehaviour.Instance.GemBlock.PositionGemPair)
             {
-                Print(string.Concat(pairs.Key, " : ", pairs.Value.Type));
+                GUILayout.Label(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            Print("Block pos: " + BlockController.Instance.GemBlock.transform.localPosition);
-            Print("Block pos Int: " + BlockController.Instance.GemBlock.LocalPositionInt);
+            GUILayout.Label("Block local pos: " + PiecesBlockBehaviour.Instance.GemBlock.transform.localPosition);
+            GUILayout.Label("Block pos Int: " + PiecesBlockBehaviour.Instance.GemBlock.LocalPositionInt);
 
-            Print("");
-            Print("TIME SCALE: "+ Time.timeScale.ToString("F"));
+            GUILayout.Label("");
+            GUILayout.Label("TIME SCALE: " + Time.timeScale.ToString("F"));
 
-            float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale,0, 1);
+            float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale, 0, 1);
             Time.timeScale = timeScale;
-            if (BlockController.Instance.GemBlock.RemainingStoppedTime >= 0) Print("Time in cell: "+BlockController.Instance.GemBlock.RemainingStoppedTime.ToString("F"));
-      
-        
-        
-        
+            if (PiecesBlockBehaviour.Instance.GemBlock.RemainingStoppedTime >= 0)
+                GUILayout.Label("Time in cell: " + PiecesBlockBehaviour.Instance.GemBlock.RemainingStoppedTime.ToString("F"));
+
+
+            showCellsValue = GUILayout.Toggle(showCellsValue, "Show Cells");
+            if (showCellsValue) PrintGemCellsDebug();
+
+            GUILayout.EndVertical();
+
         }
 
 
-        private void Print(string message)
+
+        private void PrintGemCellsDebug()
         {
-            GUI.Label(new Rect(0, ymais20, 300, 20), message);
+            var gemCells = BoardController.Instance.Board.gemCells;
+            string gemCellIndexesDebug = "";
+            for (int j = 0; j < gemCells.GetLength(1); j++)
+            {
+                string aux = "";
+                for (int i = 0; i < gemCells.GetLength(0); i++)
+                {
+                    string nextIndex = gemCells[i, j] == -1 ? "__" : " " + gemCells[i, j] + " ";
+                    aux = string.Concat(aux, nextIndex, " ");
+                }
+                gemCellIndexesDebug = string.Concat(aux, "\n", gemCellIndexesDebug);
 
+            }
+            GUILayout.Label(gemCellIndexesDebug);
         }
 
-
-        
 
     }
 }

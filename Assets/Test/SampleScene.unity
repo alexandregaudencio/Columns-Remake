@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showShortcuts: 1
+  showCellsValue: 1
 --- !u!4 &802823285
 Transform:
   m_ObjectHideFlags: 0
@@ -376,7 +377,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
       propertyPath: maxGemType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3729713345171966933, guid: 4db93e244407b28409ed85e11328efcb, type: 3}
       propertyPath: gems.Array.data[2]
@@ -640,6 +641,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 901247610892509570, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Name
+      value: GemBlockCurrent
+      objectReference: {fileID: 0}
     - target: {fileID: 1169454088124646176, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: sessionProperties
       value: 
@@ -692,6 +697,10 @@ PrefabInstance:
       propertyPath: Logging
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6351040655922280598, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: piecesController
+      value: 
+      objectReference: {fileID: 1174977889}
     - target: {fileID: 6494222682830631843, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -711,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 8646743952639992498, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646743952639992498, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
+      propertyPath: m_Name
+      value: GemBlockPreview
       objectReference: {fileID: 0}
     - target: {fileID: 8646743952639992498, guid: 4f3eaf7cb02fa8b45bcb473631dc4125, type: 3}
       propertyPath: m_IsActive
