@@ -1,6 +1,5 @@
 using DG.Tweening;
 using ObjectPooling;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Board
@@ -40,21 +39,21 @@ namespace Game.Board
         public override void OnDisable()
         {
             base.OnDisable();
-            BoardController.Instance.Board.CellsCleaned += OnCellsCleaned;
+            BoardController.Instance.Board.CellsCleaned -= OnCellsCleaned;
         }
-        private void OnCellsCleaned(List<Vector2Int> matchList)
+        private void OnCellsCleaned(Vector2Int[] matchList)
         {
             if (HasMatch(matchList))
             {
                 RemovePiece();
             }
 
-            //if (HasMatchInThisCollumn(matchList.ToArray()))
-            //{
-            //    DownPieceCount();
-            //    MoveDirection(new Vector2Int(BoardPlacementPosition.x, DownPieceCount()), removeTime).SetDelay(removeTime);
+            if (HasMatchInThisCollumn(matchList))
+            {
+                DownPieceCount();
+                MoveDirection(new Vector2Int(BoardPlacementPosition.x, DownPieceCount()), removeTime).SetDelay(removeTime);
 
-            //}
+            }
 
         }
 
@@ -80,6 +79,7 @@ namespace Game.Board
                 Vector2Int targetCell = new Vector2Int(BoardPlacementPosition.x, i);
                 if (!Board.HasGem(targetCell))
                 {
+                    Debug.Log(targetCell + " não tem gemas ");
                     voidCellsCount++;
                 }
             }
@@ -111,7 +111,7 @@ namespace Game.Board
         }
 
 
-        private bool HasMatch(List<Vector2Int> match)
+        private bool HasMatch(Vector2Int[] match)
         {
             foreach (Vector2Int cellPosition in match)
             {

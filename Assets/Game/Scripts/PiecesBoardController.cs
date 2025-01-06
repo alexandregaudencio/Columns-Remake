@@ -58,7 +58,7 @@ namespace Game.Board
         }
 
 
-        private void OnCellsCleaned(List<Vector2Int> positions)
+        private void OnCellsCleaned(Vector2Int[] positions)
         {
 
             foreach (var position in positions)

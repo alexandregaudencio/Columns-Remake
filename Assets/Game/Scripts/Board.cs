@@ -13,7 +13,7 @@ namespace Game.Board
         public int[,] gemCells;
 
         public event Action<Dictionary<Vector2Int, Gem>> Cellsfilled;
-        public event Action<List<Vector2Int>> CellsCleaned;
+        public event Action<Vector2Int[]> CellsCleaned;
         public Vector2Int GemBlockInitialPosition => new Vector2Int(Size.x / 2, (int)Size.y);
 
         public Board()
@@ -55,7 +55,13 @@ namespace Game.Board
             gemCells[position.x, position.y] = gem.Index;
 
         }
+        public void SetGemInCell(Vector2Int position, int index)
+        {
+            if (!IsValidCell(position))
+                throw new ArgumentOutOfRangeException(string.Concat(position, " is not valid cell position."));
+            gemCells[position.x, position.y] = index;
 
+        }
         public void SetGemsInCells(Dictionary<Vector2Int, Gem> positionGemPairs)
         {
             foreach (KeyValuePair<Vector2Int, Gem> positionGemPair in positionGemPairs)
@@ -89,7 +95,7 @@ namespace Game.Board
 
         }
 
-        public void RemoveGems(List<Vector2Int> positions)
+        public void RemoveGems(Vector2Int[] positions)
         {
             foreach (var position in positions)
             {

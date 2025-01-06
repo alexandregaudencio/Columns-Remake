@@ -37,19 +37,42 @@ namespace Game.Board
         private void OnEnable()
         {
             gemMatchManager.Match += OnMatch;
+            Board.CellsCleaned += OnCellsCleaned;
+
         }
 
         private void OnDisable()
         {
             gemMatchManager.Match -= OnMatch;
+            Board.CellsCleaned -= OnCellsCleaned;
+        }
+
+        private void OnCellsCleaned(Vector2Int[] matchList)
+        {
+            foreach (Vector2Int matchPosition in matchList)
+            {
+                int y = matchPosition.y;
+
+                while (Board.HasGem(new Vector2Int(matchPosition.x, y + 1)))
+                {
+                    Vector2Int currentGemPosition = new Vector2Int(matchPosition.x, y);
+                    Vector2Int upGemPosition = new Vector2Int(matchPosition.x, y + 1);
+                    Board.SetGemInCell(currentGemPosition, Board.GetGemIndex(upGemPosition));
+                    Board.SetGemInCell(upGemPosition, -1);
+                    y++;
+                }
+            }
 
         }
 
-        private void OnMatch(List<List<Vector2Int>> positions)
+
+
+
+        private void OnMatch(List<Vector2Int[]> positions)
         {
 
-            List<Vector2Int> singleGemPosition = positions.SelectMany(x => x).Distinct().ToList();
-            Debug.Log("match count: " + singleGemPosition.Count);
+            Vector2Int[] singleGemPosition = positions.SelectMany(x => x).Distinct().ToArray();
+            Debug.Log("match count: " + singleGemPosition.Length);
             Board.RemoveGems(singleGemPosition);
 
         }

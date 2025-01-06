@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Board
@@ -24,6 +26,11 @@ namespace Game.Board
             return (Vector2Int)BoardController.Instance.gemTilemap.LocalToCell(position);
         }
 
+        public static List<T[]> ToArrayList<T>(this List<List<T>> lists)
+        {
+            return lists.Select(sublist => sublist.ToArray()).ToList();
+
+        }
 
 
 
