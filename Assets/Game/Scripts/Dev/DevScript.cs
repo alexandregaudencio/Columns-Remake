@@ -30,21 +30,21 @@ namespace Game.Dev
             GUILayout.BeginVertical();
             GUILayout.Label("UP arrow: Set Gems in grid cells. SPACE: Switch gem.");
             GUILayout.Label("Arrows: Move block.");
-            foreach (KeyValuePair<Vector2Int, Gem> pairs in PiecesBlockBehaviour.Instance.GemBlock.PositionGemPair)
+            foreach (KeyValuePair<Vector2Int, Gem> pairs in PiecesBlockBehaviour.Instance.piecesBlockController.PositionGemPair)
             {
                 GUILayout.Label(string.Concat(pairs.Key, " : ", pairs.Value.Type));
             }
 
-            GUILayout.Label("Block local pos: " + PiecesBlockBehaviour.Instance.GemBlock.transform.localPosition);
-            GUILayout.Label("Block pos Int: " + PiecesBlockBehaviour.Instance.GemBlock.LocalPositionInt);
+            GUILayout.Label("Block local pos: " + PiecesBlockBehaviour.Instance.piecesBlockController.transform.localPosition);
+            GUILayout.Label("Block pos Int: " + PiecesBlockBehaviour.Instance.piecesBlockController.LocalPositionInt);
 
             GUILayout.Label("");
             GUILayout.Label("TIME SCALE: " + Time.timeScale.ToString("F"));
 
             float timeScale = GUI.HorizontalSlider(new Rect(0, ymais20, 200, 20), Time.timeScale, 0, 1);
             Time.timeScale = timeScale;
-            if (PiecesBlockBehaviour.Instance.GemBlock.RemainingStoppedTime >= 0)
-                GUILayout.Label("Time in cell: " + PiecesBlockBehaviour.Instance.GemBlock.RemainingStoppedTime.ToString("F"));
+            if (PiecesBlockBehaviour.Instance.piecesBlockController.RemainingStoppedTime >= 0)
+                GUILayout.Label("Time in cell: " + PiecesBlockBehaviour.Instance.piecesBlockController.RemainingStoppedTime.ToString("F"));
 
 
             showCellsValue = GUILayout.Toggle(showCellsValue, "Show Cells");

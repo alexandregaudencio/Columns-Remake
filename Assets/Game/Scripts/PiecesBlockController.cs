@@ -1,7 +1,7 @@
-using UnityEngine;
 using Game.Board.Gems;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game.Board
 {
@@ -21,9 +21,9 @@ namespace Game.Board
         public float previousYLocalPosition { get; private set; } = 0;
 
         private float stoppedTime = 0;
-        [SerializeField][Min(0.1f)] private float idleTimeLimit = 1f;
-        public bool StoppedTimeOver => stoppedTime > idleTimeLimit;
-        public float RemainingStoppedTime => idleTimeLimit - stoppedTime;
+        [SerializeField][Min(0.1f)] private float StoppedTimeLimit = 1f;
+        public bool Stoppedtime => stoppedTime > StoppedTimeLimit;
+        public float RemainingStoppedTime => StoppedTimeLimit - stoppedTime;
         //trocar por PIECE (peças relativas ao game ojbects, com posição na celula do board, gema, relative position ao block e etc).
         public Dictionary<Vector2Int, Gem> PositionGemPair => new()
         {
@@ -44,6 +44,7 @@ namespace Game.Board
             throw new ArgumentOutOfRangeException("index out of range. try index beetween 0 to 2");
 
         }
+        public event Action OnStoppedTimeExceeded;
 
 
         private void Update()
@@ -52,11 +53,18 @@ namespace Game.Board
 
         }
 
-        public void UpdateStoppedTimeLogic()
+        private void UpdateStoppedTimeLogic()
         {
-            if (transform.localPosition.y == previousYLocalPosition)
+            if (Mathf.Approximately(transform.localPosition.y, previousYLocalPosition))
             {
                 stoppedTime += Time.deltaTime;
+
+                if (stoppedTime >= StoppedTimeLimit)
+                {
+                    OnStoppedTimeExceeded?.Invoke();
+                    stoppedTime = 0;
+                    Debug.Log("Stopped time exceeded");
+                }
             }
             else
             {
@@ -64,7 +72,6 @@ namespace Game.Board
                 stoppedTime = 0;
             }
         }
-
 
 
 

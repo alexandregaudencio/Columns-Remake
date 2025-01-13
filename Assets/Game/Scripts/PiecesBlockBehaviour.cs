@@ -9,34 +9,45 @@ namespace Game.Board
     [RequireComponent(typeof(PiecesBlockController))]
     public class PiecesBlockBehaviour : MonoBehaviour
     {
-        public PiecesBlockController GemBlock { get; private set; }
+        public PiecesBlockController piecesBlockController { get; private set; }
         [SerializeField] private float forceDownSpeed = 10;
         [SerializeField][Min(0.1f)] float descentSpeed = 0.1f;
 
         [SerializeField] private PlayerSessionProperties sessionProperties;
 
         public static PiecesBlockBehaviour Instance { get; private set; }
-
+        public GemMatchManager GemMatchManager { get; private set; }
         private void Awake()
         {
             Instance = this;
-            GemBlock = GetComponent<PiecesBlockController>();
+            piecesBlockController = GetComponent<PiecesBlockController>();
+            GemMatchManager = FindObjectOfType<GemMatchManager>();
+
         }
         private void Start()
         {
             ResetPosition();
         }
 
+
+
         private void OnEnable()
         {
             sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
+            GemMatchManager.MatchFailed += OnMatchFailed;
+            piecesBlockController.OnStoppedTimeExceeded += OnStoppedtimeOver;
 
         }
+
 
         private void OnDisable()
         {
             sessionProperties.SequenceIndexUpdate -= OnSequenceIndexUpdate;
+            GemMatchManager.MatchFailed -= OnMatchFailed;
+            piecesBlockController.OnStoppedTimeExceeded += OnStoppedtimeOver;
+
         }
+
 
 
         private void FixedUpdate()
@@ -70,18 +81,9 @@ namespace Game.Board
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                GemBlock.SwitchSequence();
+                piecesBlockController.SwitchSequence();
             }
 
-
-
-            //TODO: cleanup this code. esse codigo faz as peças serem atualizadas
-            if (GemBlock.StoppedTimeOver)
-            {
-                BoardController.Instance.SetGemBlockAuto();
-                sessionProperties.SetNextSequenceIndex();
-
-            }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -95,16 +97,25 @@ namespace Game.Board
 
         private void OnSequenceIndexUpdate(int _)
         {
-            GemBlock.SetupBlock(sessionProperties.CurrentSequence);
+            piecesBlockController.SetupBlock(sessionProperties.CurrentSequence);
             ResetPosition();
 
         }
+        private void OnMatchFailed()
+        {
+            sessionProperties.SetNextSequenceIndex();
+        }
+        private void OnStoppedtimeOver()
+        {
+            BoardController.Instance.SetGemBlockAuto();
+        }
+
 
         public bool IsValidMovement(Vector2 direction)
         {
-            if (GemBlock.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
-            if (GemBlock.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
-            if (GemBlock.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
+            if (piecesBlockController.PointUnderLeft.x + direction.x < BoardController.Instance.Bounds.min.x) return false;
+            if (piecesBlockController.PointUnderRight.x + direction.x > BoardController.Instance.Bounds.max.x) return false;
+            if (piecesBlockController.PointUnderRight.y + direction.y < BoardController.Instance.Bounds.min.y) return false;
             return true;
 
         }
@@ -142,9 +153,9 @@ namespace Game.Board
 
         private void OnDrawGizmos()
         {
-            if (GemBlock == null) return;
+            if (piecesBlockController == null) return;
             Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(GemBlock.PointUnderLeft, GemBlock.PointUnderRight);
+            Gizmos.DrawLine(piecesBlockController.PointUnderLeft, piecesBlockController.PointUnderRight);
         }
 
 
