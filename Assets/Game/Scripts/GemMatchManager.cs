@@ -10,6 +10,8 @@ namespace Game.Board
     {
         private Board board;
         public event Action<List<Vector2Int[]>> Match;
+        public event Action MatchFailed;
+
         public bool Logging = false;
         [SerializeField] private PiecesBoardController piecesController;
         private void Awake()
@@ -35,13 +37,13 @@ namespace Game.Board
             List<List<Vector2Int>> allMatches = new();
             if (HasMatch(positions, ref allMatches))
             {
-
                 Match?.Invoke(allMatches.ToArrayList());
-                Debug.Log("matching");
-
-
-
             }
+            else
+            {
+                MatchFailed?.Invoke();
+            }
+
         }
 
 

@@ -140,3 +140,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  removeTime: 0.5
+  DownEaseMode: 5
+  BoardPlacementPosition: {x: 0, y: 0}

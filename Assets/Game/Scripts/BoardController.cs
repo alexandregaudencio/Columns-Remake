@@ -93,7 +93,7 @@ namespace Game.Board
         //posiciona novas gemas no bloco de peças que caem
         public void SetGemBlockAuto()
         {
-            Board.SetGemsInCells(PiecesBlockBehaviour.Instance.GemBlock.PositionGemPair);
+            Board.SetGemsInCells(PiecesBlockBehaviour.Instance.piecesBlockController.PositionGemPair);
         }
 
 

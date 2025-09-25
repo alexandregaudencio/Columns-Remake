@@ -12,6 +12,7 @@ namespace Game.Board
         [SerializeField] private Gem gem;
         [SerializeField] private AnimationCurve matchBlinkCurve;
         [SerializeField] private float removeTime = 0.5f;
+        [SerializeField] private Ease DownEaseMode;
         //[field: SerializeField] public bool IsSpecial { get; private set; }
 
         public Vector2Int BoardPlacementPosition;
@@ -47,11 +48,14 @@ namespace Game.Board
             {
                 RemovePiece();
             }
-
+            Debug.Log("tem match na coluna: " + BoardPlacementPosition.x + " ? " + HasMatchInThisCollumn(matchList));
             if (HasMatchInThisCollumn(matchList))
             {
-                DownPieceCount();
-                MoveDirection(new Vector2Int(BoardPlacementPosition.x, DownPieceCount()), removeTime).SetDelay(removeTime);
+                Debug.Log("Empty cell under: " + GetEmptyCellsUnder());
+                Vector2Int moveDirection = new Vector2Int(
+                    BoardPlacementPosition.x,
+                    BoardPlacementPosition.y - GetEmptyCellsUnder());
+                MoveDirection(moveDirection, removeTime).SetDelay(removeTime);
 
             }
 
@@ -71,19 +75,20 @@ namespace Game.Board
 
         }
 
-        private int DownPieceCount()
+        private int GetEmptyCellsUnder()
         {
-            int voidCellsCount = 0;
-            for (int i = 0; i < BoardPlacementPosition.y; i++)
+            int emptyCells = 0;
+            for (int i = 0; i <= BoardPlacementPosition.y; i++)
             {
                 Vector2Int targetCell = new Vector2Int(BoardPlacementPosition.x, i);
                 if (!Board.HasGem(targetCell))
                 {
-                    Debug.Log(targetCell + " não tem gemas ");
-                    voidCellsCount++;
+                    emptyCells++;
                 }
             }
-            return voidCellsCount;
+            Debug.Log("Gem" + gem.Index + " : " + BoardPlacementPosition + "tem " + emptyCells + " vazios abaixo. ");
+
+            return emptyCells;
         }
 
         public void SetGem(Gem gem)
@@ -104,10 +109,14 @@ namespace Game.Board
         public void Move(Vector2 position)
         {
             transform.localPosition = position;
+            BoardPlacementPosition = position.ToInt();
         }
         public Tween MoveDirection(Vector2Int direction, float duration)
         {
-            return transform.DOLocalMove((Vector3Int)direction, duration, false).SetEase(Ease.InQuad);
+            return transform.DOLocalMove((Vector3Int)direction, duration, false).SetEase(DownEaseMode).OnComplete(() =>
+            {
+                BoardPlacementPosition = (Vector2Int)transform.localPosition.ToInt();
+            });
         }
 
 
@@ -115,8 +124,10 @@ namespace Game.Board
         {
             foreach (Vector2Int cellPosition in match)
             {
+
                 if (cellPosition == BoardPlacementPosition)
                 {
+                    Debug.Log("match em: " + BoardPlacementPosition);
                     return true;
                 }
             }

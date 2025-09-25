@@ -32,7 +32,7 @@ namespace Game.Board
         public bool HasGem(Vector2Int position)
         {
             if (IsValidCell(position))
-                return gemCells[position.x, position.y] != -1;
+                return GetGemIndex(position) != -1;
             return false;
         }
         #endregion
