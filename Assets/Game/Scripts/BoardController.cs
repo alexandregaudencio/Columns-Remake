@@ -97,9 +97,9 @@ namespace Game.Board
                 case BoardState.CHECK:
                     SetGemBlockAuto();
                     //ChangeState(BoardState.CHECK);
+
                     break;
                 case BoardState.CLEAN_UP:
-                    //ChangeState(BoardState.BLOCK_DOWN);
 
                     break;
 

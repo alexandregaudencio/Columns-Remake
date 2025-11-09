@@ -78,21 +78,21 @@ namespace Game.Board
         {
             List<Vector2Int> matches = new();
 
-            foreach (var position in gemPositions)
-            {
-                if (HasHorizontalMatch(position, out matches))
-                {
-                    allMatches.Add(matches);
-                }
-                if (HasDiagonalUpperLeftMatch(position, out matches))
-                {
-                    allMatches.Add(matches);
-                }
-                if (HasDiagonalUpperRightMatch(position, out matches))
-                {
-                    allMatches.Add(matches);
-                }
-            }
+            //foreach (var position in gemPositions)
+            //{
+            //    if (HasHorizontalMatch(position, out matches))
+            //    {
+            //        allMatches.Add(matches);
+            //    }
+            //    if (HasDiagonalUpperLeftMatch(position, out matches))
+            //    {
+            //        allMatches.Add(matches);
+            //    }
+            //    if (HasDiagonalUpperRightMatch(position, out matches))
+            //    {
+            //        allMatches.Add(matches);
+            //    }
+            //}
 
 
             if (HasVerticalMatch(gemPositions, out matches))
