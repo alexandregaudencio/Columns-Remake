@@ -73,8 +73,10 @@ namespace Game.Board
                 case BoardState.BLOCK_DOWN:
                     SetupBlock(sessionProperties.CurrentSequence);
                     blockBehaviour.ResetPosition();
+                    SetVisible(true);
                     return;
                 case BoardState.CHECK:
+                    SetVisible(false);
 
                     return;
                 case BoardState.MATCH:
@@ -117,11 +119,11 @@ namespace Game.Board
 
                 if (stoppedTime >= StoppedTimeLimit)
                 {
+                    SetVisible(false);
                     OnStoppedTimeExceeded?.Invoke();
                     stoppedTime = 0;
                     BoardController.Instance.ChangeState(BoardState.CHECK);
                     Debug.Log("Stopped time exceeded");
-                    SetVisible(false);
                 }
             }
             else
