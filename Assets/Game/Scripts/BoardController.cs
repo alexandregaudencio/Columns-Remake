@@ -70,7 +70,7 @@ namespace Game.Board
 
         private void OnScrollingBlockFinished()
         {
-            SetGemBlockAuto();
+            ChangeState(BoardState.CHECK);
         }
 
 
@@ -79,7 +79,7 @@ namespace Game.Board
             gemMatchManager.Match -= OnMatch;
             gemMatchManager.MatchFailed -= OnMatchFailed;
             Board.CellsCleaned -= OnCellsCleaned;
-            PiecesBlockBehaviour.Instance.piecesBlockController.OnStoppedTimeExceeded += OnScrollingBlockFinished;
+            PiecesBlockBehaviour.Instance.piecesBlockController.OnStoppedTimeExceeded -= OnScrollingBlockFinished;
 
         }
 
@@ -95,9 +95,11 @@ namespace Game.Board
                     PlayerSessionProperties.SetNextSequenceIndex();
                     break;
                 case BoardState.CHECK:
+                    SetGemBlockAuto();
+                    //ChangeState(BoardState.CHECK);
                     break;
                 case BoardState.CLEAN_UP:
-                    ChangeState(BoardState.BLOCK_DOWN);
+                    //ChangeState(BoardState.BLOCK_DOWN);
 
                     break;
 

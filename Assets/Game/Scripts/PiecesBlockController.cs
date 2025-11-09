@@ -120,10 +120,8 @@ namespace Game.Board
 
                 if (stoppedTime >= StoppedTimeLimit)
                 {
-                    SetVisible(false);
                     OnStoppedTimeExceeded?.Invoke();
                     stoppedTime = 0;
-                    BoardController.Instance.ChangeState(BoardState.CHECK);
                     Debug.Log("Stopped time exceeded");
                 }
             }
