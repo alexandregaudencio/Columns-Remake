@@ -11,26 +11,26 @@ namespace Game.Board.Gems
     public class Sequence
     {
 
-        [SerializeField] private Gem gem2;
-        [SerializeField] private Gem gem1;
-        [SerializeField] private Gem gem0;
+        [SerializeField] private GemSO gem2;
+        [SerializeField] private GemSO gem1;
+        [SerializeField] private GemSO gem0;
 
         /// <summary>
         /// GEMA DE CIMA
         /// </summary>
-        public Gem Gem2 { get => gem2; set => gem2 = value; }
+        public GemSO Gem2 { get => gem2; set => gem2 = value; }
         /// <summary>
         /// GEMA DO MEIO
         /// </summary>
-        public Gem Gem1 { get => gem1; set => gem1 = value; }
+        public GemSO Gem1 { get => gem1; set => gem1 = value; }
         /// <summary>
         /// GEMA DE BAIXO
         /// </summary>
-        public Gem Gem0 { get => gem0; set => gem0 = value; }
+        public GemSO Gem0 { get => gem0; set => gem0 = value; }
         public event Action GemChange;
         public void SwitchGems()
         {
-            Gem lastGemDown = gem0;
+            GemSO lastGemDown = gem0;
             gem0 = Gem1;
             Gem1 = gem2;
             gem2 = lastGemDown;

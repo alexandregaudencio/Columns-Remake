@@ -26,7 +26,7 @@ namespace Game.Board
         public bool Stoppedtime => stoppedTime > StoppedTimeLimit;
         public float RemainingStoppedTime => StoppedTimeLimit - stoppedTime;
         //trocar por PIECE (peças relativas ao game ojbects, com posição na celula do board, gema, relative position ao block e etc).
-        public Dictionary<Vector2Int, Gem> PositionGemPair => new()
+        public Dictionary<Vector2Int, GemSO> PositionGemPair => new()
         {
             {transform.localPosition.AsCell()+Vector2Int.zero ,sequence.Gem0 },
             {transform.localPosition.AsCell()+Vector2Int.up   ,sequence.Gem1 },
@@ -34,10 +34,10 @@ namespace Game.Board
 
         };
 
-        public KeyValuePair<Vector2Int, Gem> GetPositionGemPair(int index)
+        public KeyValuePair<Vector2Int, GemSO> GetPositionGemPair(int index)
         {
             int i = 0;
-            foreach (KeyValuePair<Vector2Int, Gem> pair in PositionGemPair)
+            foreach (KeyValuePair<Vector2Int, GemSO> pair in PositionGemPair)
             {
                 if (i == index) return pair;
                 i++;
@@ -145,9 +145,9 @@ namespace Game.Board
 
         private void UpdateSprites()
         {
-            gemRenderes[0].sprite = sequence.Gem2.Sprite;
-            gemRenderes[1].sprite = sequence.Gem1.Sprite;
-            gemRenderes[2].sprite = sequence.Gem0.Sprite;
+            gemRenderes[0].sprite = sequence.Gem2.GemData.Sprite;
+            gemRenderes[1].sprite = sequence.Gem1.GemData.Sprite;
+            gemRenderes[2].sprite = sequence.Gem0.GemData.Sprite;
         }
 
         public void SwitchSequence()

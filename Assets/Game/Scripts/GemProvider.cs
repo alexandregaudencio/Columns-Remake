@@ -12,21 +12,21 @@ namespace Game.Board.Gems
     public class GemProvider
     {
         [SerializeField][Range(1, 9)] private int maxGemType = 6;
-        [SerializeField] private List<Gem> gems;
+        [SerializeField] private List<GemSO> gems;
 
-        private List<Gem> releasedGems = new();
+        private List<GemSO> releasedGems = new();
 
-        public Gem GetGem(GemType gemType)
+        public GemSO GetGem(GemType gemType)
         {
-            Gem gem = Object.Instantiate(gems.Find(gem => gem.Type == gemType));
+            GemSO gem = Object.Instantiate(gems.Find(gem => gem.GemData.Type == gemType));
             releasedGems.Add(gem);
             return gem;
         }
 
-        public Gem GetGemRandomly()
+        public GemSO GetGemRandomly()
         {
             int randomIndex = Random.Range(0, maxGemType);
-            Gem gem = Object.Instantiate(gems[randomIndex]);
+            GemSO gem = Object.Instantiate(gems[randomIndex]);
             releasedGems.Add(gem);
             return gem;
 

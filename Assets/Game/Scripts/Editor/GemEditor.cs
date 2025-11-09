@@ -4,20 +4,20 @@ using UnityEngine;
 namespace Game.Board.Gems
 {
 
-    [ CustomEditor(typeof(Gem))]
+    [CustomEditor(typeof(GemSO))]
     public class GemEditor : Editor
     {
-        Gem gem;
+        GemSO gem;
         private void OnEnable()
         {
-            gem = (Gem)target;
+            gem = (GemSO)target;
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            if(gem.Sprite == null) return;
-            Texture2D texture = AssetPreview.GetAssetPreview(gem.Sprite);
+            if (gem.GemData.Sprite == null) return;
+            Texture2D texture = AssetPreview.GetAssetPreview(gem.GemData.Sprite);
             GUILayout.Label("", GUILayout.Height(100), GUILayout.Width(100));
             GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
         }

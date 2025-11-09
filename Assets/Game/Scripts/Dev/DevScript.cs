@@ -31,9 +31,9 @@ namespace Game.Dev
             GUILayout.Label("UP arrow: Set Gems in grid cells. SPACE: Switch gem.");
             GUILayout.Label("Arrows: Move block.");
             string invertedGems = "";
-            foreach (KeyValuePair<Vector2Int, Gem> pairs in PiecesBlockBehaviour.Instance.piecesBlockController.PositionGemPair)
+            foreach (KeyValuePair<Vector2Int, GemSO> pairs in PiecesBlockBehaviour.Instance.piecesBlockController.PositionGemPair)
             {
-                invertedGems = string.Concat(pairs.Key, " : ", pairs.Value.Type, "\n", invertedGems);
+                invertedGems = string.Concat(pairs.Key, " : ", pairs.Value.GemData.Type, "\n", invertedGems);
             }
             GUILayout.Label(invertedGems);
 

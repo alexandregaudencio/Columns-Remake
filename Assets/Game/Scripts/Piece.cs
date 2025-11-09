@@ -9,7 +9,7 @@ namespace Game.Board
     {
 
         private SpriteRenderer spriteRenderer;
-        [SerializeField] private Gem gem;
+        [SerializeField] private GemSO gem;
         [SerializeField] private AnimationCurve matchBlinkCurve;
         [SerializeField] private float removeTime = 0.5f;
         [SerializeField] private Ease DownEaseMode;
@@ -24,7 +24,7 @@ namespace Game.Board
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        public void Setup(Gem gem, Vector2Int position)
+        public void Setup(GemSO gem, Vector2Int position)
         {
             SetGem(gem);
             SetPosition(position);
@@ -91,10 +91,10 @@ namespace Game.Board
             return emptyCells;
         }
 
-        public void SetGem(Gem gem)
+        public void SetGem(GemSO gem)
         {
             this.gem = gem;
-            spriteRenderer.sprite = gem.Sprite;
+            spriteRenderer.sprite = gem.GemData.Sprite;
 
         }
 

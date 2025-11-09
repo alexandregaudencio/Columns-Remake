@@ -17,7 +17,7 @@ namespace Game.Board
         private static ObjectPool<PoolObject> objectPool;
         private List<PoolObject> objectsActive = new List<PoolObject>();
 
-        public event Action<Dictionary<Vector2Int, Gem>> PiecesPlaced = delegate { };
+        public event Action<Dictionary<Vector2Int, GemSO>> PiecesPlaced = delegate { };
 
         private void Awake()
         {
@@ -40,7 +40,7 @@ namespace Game.Board
         }
 
 
-        private void OnCellsFilled(Dictionary<Vector2Int, Gem> gemPositionPairs)
+        private void OnCellsFilled(Dictionary<Vector2Int, GemSO> gemPositionPairs)
         {
 
             foreach (var pair in gemPositionPairs)

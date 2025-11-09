@@ -40,7 +40,7 @@ namespace Game.Board
 
         }
 
-        private void OnPiecesPlaced(Dictionary<Vector2Int, Gem> positionGemPairs)
+        private void OnPiecesPlaced(Dictionary<Vector2Int, GemSO> positionGemPairs)
         {
             List<Vector2Int> positions = positionGemPairs.Keys.ToList();
 

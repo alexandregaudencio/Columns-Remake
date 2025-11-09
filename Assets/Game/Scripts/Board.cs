@@ -12,7 +12,7 @@ namespace Game.Board
         [field: SerializeField] public Vector2Int Size { get; private set; } = new Vector2Int(7, 13);
         public int[,] gemCells;
 
-        public event Action<Dictionary<Vector2Int, Gem>> Cellsfilled;
+        public event Action<Dictionary<Vector2Int, GemSO>> Cellsfilled;
         public event Action<Vector2Int[]> CellsCleaned;
         public Vector2Int GemBlockInitialPosition => new Vector2Int(Size.x / 2, (int)Size.y);
 
@@ -48,11 +48,11 @@ namespace Game.Board
 
 
         #region setters
-        public void SetGemInCell(Vector2Int position, Gem gem)
+        public void SetGemInCell(Vector2Int position, GemSO gem)
         {
             if (!IsValidCell(position))
                 throw new ArgumentOutOfRangeException(string.Concat(position, " is not valid cell position."));
-            gemCells[position.x, position.y] = gem.Index;
+            gemCells[position.x, position.y] = gem.GemData.Index;
 
         }
         public void SetGemInCell(Vector2Int position, int index)
@@ -62,9 +62,9 @@ namespace Game.Board
             gemCells[position.x, position.y] = index;
 
         }
-        public void SetGemsInCells(Dictionary<Vector2Int, Gem> positionGemPairs)
+        public void SetGemsInCells(Dictionary<Vector2Int, GemSO> positionGemPairs)
         {
-            foreach (KeyValuePair<Vector2Int, Gem> positionGemPair in positionGemPairs)
+            foreach (KeyValuePair<Vector2Int, GemSO> positionGemPair in positionGemPairs)
             {
                 SetGemInCell(positionGemPair.Key, positionGemPair.Value);
             }

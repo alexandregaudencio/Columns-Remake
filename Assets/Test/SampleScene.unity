@@ -331,12 +331,6 @@ MonoBehaviour:
       - {fileID: 11400000, guid: e3a5a8fc76391d546b91c94a1483e99f, type: 2}
       - {fileID: 11400000, guid: 0212b9bd9c797d34d88818c1ffd85888, type: 2}
       - {fileID: 11400000, guid: 1b457ce4c9cf77f4aaba17892a8991df, type: 2}
-      - {fileID: 11400000, guid: cf277c3b8c67cdb43a8f7284ad021a82, type: 2}
-      - {fileID: 11400000, guid: c6a1b1074ea199041bac35efb05f1552, type: 2}
-      - {fileID: 11400000, guid: cbc7bdd866e41b246a486f91ec4f71a1, type: 2}
-      - {fileID: 11400000, guid: 1c8976a58e29ce142ac369b67c45e1c5, type: 2}
-      - {fileID: 11400000, guid: 4c0be21221d540c45b193089405b378d, type: 2}
-      - {fileID: 11400000, guid: d4569a2a551ceb14884cae76882b83e7, type: 2}
     sequencesReleased: []
 --- !u!4 &866693287
 Transform:
@@ -388,68 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8e5c92aecb14740b31dbdc8b789d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1729491377675832836
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2036255828092366079, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: GemProvider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.2015452
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.666779
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.014589182
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289184660814438371, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9189047178461753348, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-      propertyPath: m_Name
-      value: GemSequenceProvider
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2036255828092366079, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e3b34ef70c3af9241928fe1f4b63c4e6, type: 3}
 --- !u!1001 &7933476354298045535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -712,6 +644,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 802823285}
   - {fileID: 519420032}
-  - {fileID: 1729491377675832836}
   - {fileID: 866693287}
   - {fileID: 597987411}
