@@ -74,14 +74,15 @@ namespace Game.Board
                     SetupBlock(sessionProperties.CurrentSequence);
                     blockBehaviour.ResetPosition();
                     SetVisible(true);
-                    return;
+                    break;
                 case BoardState.CHECK:
+
+                    break;
+                case BoardState.MATCH:
                     SetVisible(false);
 
-                    return;
-                case BoardState.MATCH:
+                    break;
 
-                    return;
 
             }
         }
