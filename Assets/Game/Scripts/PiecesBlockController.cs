@@ -1,6 +1,7 @@
-using Game.Board.Gems;
+using Game.Player;
 using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace Game.Board
@@ -15,7 +16,7 @@ namespace Game.Board
         public Vector3 PointUnderLeft => new Vector3(Bounds.min.x, Bounds.min.y);
         public Vector3 PointUnderRight => new Vector3(Bounds.max.x, Bounds.min.y);
 
-        private Sequence sequence;
+        private Gems.Sequence sequence;
 
         public Vector2Int LocalPositionInt => new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
         public float previousYLocalPosition { get; private set; } = 0;
@@ -46,12 +47,67 @@ namespace Game.Board
         }
         public event Action OnStoppedTimeExceeded;
 
+        [SerializeField] private PlayerSessionProperties sessionProperties;
+        public GemMatchManager GemMatchManager { get; private set; }
+
+        private PiecesBlockBehaviour blockBehaviour;
+        public BoardController BoardController;
+        public void Awake()
+        {
+            GemMatchManager = FindAnyObjectByType<GemMatchManager>();
+            blockBehaviour = GetComponent<PiecesBlockBehaviour>();
+
+        }
+        public void OnEnable()
+        {
+            BoardController.CurrentState.Subscribe(OnStateChange);
+
+            //sessionProperties.SetNextSequenceIndex();
+
+        }
+
+        private void OnStateChange(BoardState state)
+        {
+            switch (state)
+            {
+                case BoardState.BLOCK_DOWN:
+                    SetupBlock(sessionProperties.CurrentSequence);
+                    blockBehaviour.ResetPosition();
+                    return;
+                case BoardState.CHECK:
+
+                    return;
+                case BoardState.MATCH:
+
+                    return;
+
+            }
+        }
+
+
+
 
         private void Update()
         {
             UpdateStoppedTimeLogic();
-
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                BoardController.Instance.SetGemBlockAuto();
+                //sessionProperties.SetNextSequenceIndex();
+            }
         }
+
+
+        //private void OnEnable()
+        //{
+        //    BoardController.Instance.CurrentState
+        //    .Where(state => state == BoardState.CLEAN_UP)
+        //    .Subscribe(_ => BoardController.Instance.SetGemBlockAuto())
+        //    .AddTo(this);
+        //}
+
+
+
 
         private void UpdateStoppedTimeLogic()
         {
@@ -63,7 +119,9 @@ namespace Game.Board
                 {
                     OnStoppedTimeExceeded?.Invoke();
                     stoppedTime = 0;
+                    BoardController.Instance.ChangeState(BoardState.CHECK);
                     Debug.Log("Stopped time exceeded");
+                    SetVisible(false);
                 }
             }
             else
@@ -79,6 +137,8 @@ namespace Game.Board
         {
             this.sequence = sequence;
             UpdateSprites();
+            SetVisible(true);
+
 
         }
 
@@ -93,6 +153,14 @@ namespace Game.Board
         {
             sequence.SwitchGems();
             UpdateSprites();
+        }
+
+        public void SetVisible(bool value)
+        {
+            foreach (var gems in gemRenderes)
+            {
+                gems.enabled = value;
+            }
         }
 
 

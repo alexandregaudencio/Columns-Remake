@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.gist-importer": {
-      "version": "https://github.com/alexandregaudencio/GistImporter.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "e8b68db58c2e99fbcfabc65b75961b9a490a9a1e"
-    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 1,
@@ -38,11 +31,11 @@
       "depth": 2,
       "source": "registry",
       "dependencies": {
+        "com.unity.burst": "1.8.4",
         "com.unity.2d.sprite": "1.0.0",
         "com.unity.mathematics": "1.1.0",
-        "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.burst": "1.8.4"
+        "com.unity.modules.uielements": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

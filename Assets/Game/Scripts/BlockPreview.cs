@@ -9,6 +9,7 @@ namespace Game.Board
         [SerializeField] private PlayerSessionProperties sessionProperties;
         [SerializeField] private SpriteRenderer[] renderes;
 
+
         private void OnEnable()
         {
             sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;

@@ -48,10 +48,10 @@ namespace Game.Board
             {
                 RemovePiece();
             }
-            Debug.Log("tem match na coluna: " + BoardPlacementPosition.x + " ? " + HasMatchInThisCollumn(matchList));
+            //Debug.Log("tem match na coluna: " + BoardPlacementPosition.x + " ? " + HasMatchInThisCollumn(matchList));
             if (HasMatchInThisCollumn(matchList))
             {
-                Debug.Log("Empty cell under: " + GetEmptyCellsUnder());
+                //Debug.Log("Empty cell under: " + GetEmptyCellsUnder());
                 Vector2Int moveDirection = new Vector2Int(
                     BoardPlacementPosition.x,
                     BoardPlacementPosition.y - GetEmptyCellsUnder());
@@ -86,7 +86,7 @@ namespace Game.Board
                     emptyCells++;
                 }
             }
-            Debug.Log("Gem" + gem.Index + " : " + BoardPlacementPosition + "tem " + emptyCells + " vazios abaixo. ");
+            //Debug.Log("Gem" + gem.Index + " : " + BoardPlacementPosition + "tem " + emptyCells + " vazios abaixo. ");
 
             return emptyCells;
         }
@@ -127,7 +127,7 @@ namespace Game.Board
 
                 if (cellPosition == BoardPlacementPosition)
                 {
-                    Debug.Log("match em: " + BoardPlacementPosition);
+                    //Debug.Log("match em: " + BoardPlacementPosition);
                     return true;
                 }
             }

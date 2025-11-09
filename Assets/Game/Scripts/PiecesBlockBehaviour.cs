@@ -1,4 +1,3 @@
-using Game.Player;
 using UnityEngine;
 
 namespace Game.Board
@@ -13,15 +12,13 @@ namespace Game.Board
         [SerializeField] private float forceDownSpeed = 10;
         [SerializeField][Min(0.1f)] float descentSpeed = 0.1f;
 
-        [SerializeField] private PlayerSessionProperties sessionProperties;
 
         public static PiecesBlockBehaviour Instance { get; private set; }
-        public GemMatchManager GemMatchManager { get; private set; }
         private void Awake()
         {
             Instance = this;
+            //privsório
             piecesBlockController = GetComponent<PiecesBlockController>();
-            GemMatchManager = FindObjectOfType<GemMatchManager>();
 
         }
         private void Start()
@@ -31,22 +28,6 @@ namespace Game.Board
 
 
 
-        private void OnEnable()
-        {
-            sessionProperties.SequenceIndexUpdate += OnSequenceIndexUpdate;
-            GemMatchManager.MatchFailed += OnMatchFailed;
-            piecesBlockController.OnStoppedTimeExceeded += OnStoppedtimeOver;
-
-        }
-
-
-        private void OnDisable()
-        {
-            sessionProperties.SequenceIndexUpdate -= OnSequenceIndexUpdate;
-            GemMatchManager.MatchFailed -= OnMatchFailed;
-            piecesBlockController.OnStoppedTimeExceeded += OnStoppedtimeOver;
-
-        }
 
 
 
@@ -85,30 +66,9 @@ namespace Game.Board
             }
 
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                BoardController.Instance.SetGemBlockAuto();
-                sessionProperties.SetNextSequenceIndex();
-            }
-            //
-
 
         }
 
-        private void OnSequenceIndexUpdate(int _)
-        {
-            piecesBlockController.SetupBlock(sessionProperties.CurrentSequence);
-            ResetPosition();
-
-        }
-        private void OnMatchFailed()
-        {
-            sessionProperties.SetNextSequenceIndex();
-        }
-        private void OnStoppedtimeOver()
-        {
-            BoardController.Instance.SetGemBlockAuto();
-        }
 
 
         public bool IsValidMovement(Vector2 direction)

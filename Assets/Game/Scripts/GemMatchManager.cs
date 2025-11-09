@@ -22,12 +22,22 @@ namespace Game.Board
         private void OnEnable()
         {
             piecesController.PiecesPlaced += OnPiecesPlaced;
+            Match += LogMatch;
+            MatchFailed += OnMatchFailed;
+
         }
 
+        private void OnMatchFailed()
+        {
+            Debug.Log("Match failed");
+        }
 
         private void OnDisable()
         {
             piecesController.PiecesPlaced -= OnPiecesPlaced;
+            Match -= LogMatch;
+            MatchFailed -= OnMatchFailed;
+
         }
 
         private void OnPiecesPlaced(Dictionary<Vector2Int, Gem> positionGemPairs)
@@ -47,22 +57,22 @@ namespace Game.Board
         }
 
 
-        public void LogMatch(List<List<Vector2Int>> allMatches)
+        private void LogMatch(List<Vector2Int[]> list)
         {
-            Debug.Log("Total Matches: " + allMatches.Count);
-            int i = 0;
-            foreach (List<Vector2Int> matchList in allMatches)
+            string message = $"Match count:{list.Count} ";
+
+            for (int i = 0; i < list.Count; i++)
             {
-                i++;
-                Debug.Log("match index: " + i);
-
-                foreach (var pos in matchList)
+                message += $" (match:{i}) ";
+                foreach (var pos in list[i])
                 {
-                    Debug.Log("match pos:" + pos);
+                    message += $"pos:{pos}";
                 }
+                message = "\n";
             }
-        }
+            Debug.Log(message);
 
+        }
 
         public bool HasMatch(List<Vector2Int> gemPositions, ref List<List<Vector2Int>> allMatches)
         {

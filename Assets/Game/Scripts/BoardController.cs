@@ -1,5 +1,7 @@
+using Game.Player;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,18 +9,31 @@ using UnityEngine.Tilemaps;
 namespace Game.Board
 {
 
+    public enum BoardState
+    {
+        None,  //Outo of game
+        BLOCK_DOWN, //block scrolling down
+        CHECK, //checking if has match
+        MATCH, //matching
+        CLEAN_UP  //cleaning the board pieces in match
+    }
+
     public class BoardController : MonoBehaviour
     {
+        private ReactiveProperty<BoardState> _currentState = new(BoardState.None);
+
         [field: SerializeField] public Board Board { get; private set; }
         private GemMatchManager gemMatchManager;
         [field: SerializeField] public Tilemap gemTilemap { get; private set; }
 
         public static BoardController Instance { get; private set; }
+        public IReadOnlyReactiveProperty<BoardState> CurrentState => _currentState;
 
         public Bounds Bounds => new Bounds(
             (transform.localPosition + new Vector3(Board.Size.x / 2, Board.Size.y / 2)),
             new Vector3(Board.Size.x, Board.Size.y));
 
+        public PlayerSessionProperties PlayerSessionProperties;
 
         private void Awake()
         {
@@ -32,21 +47,80 @@ namespace Game.Board
         {
             Board.ResetCells();
 
+            _currentState
+           .DistinctUntilChanged() // evita repetir a mesma mudança
+           .Subscribe(OnStateChanged)
+           .AddTo(this);
+
+            ChangeState(BoardState.BLOCK_DOWN);
+
+
         }
+
+
 
         private void OnEnable()
         {
             gemMatchManager.Match += OnMatch;
+            gemMatchManager.MatchFailed += OnMatchFailed;
             Board.CellsCleaned += OnCellsCleaned;
+            PiecesBlockBehaviour.Instance.piecesBlockController.OnStoppedTimeExceeded += OnScrollingBlockFinished;
 
         }
+
+        private void OnScrollingBlockFinished()
+        {
+            SetGemBlockAuto();
+        }
+
 
         private void OnDisable()
         {
             gemMatchManager.Match -= OnMatch;
+            gemMatchManager.MatchFailed -= OnMatchFailed;
             Board.CellsCleaned -= OnCellsCleaned;
+            PiecesBlockBehaviour.Instance.piecesBlockController.OnStoppedTimeExceeded += OnScrollingBlockFinished;
+
         }
 
+        private void OnStateChanged(BoardState newState)
+        {
+            Debug.Log($"Traca de estado: {newState}");
+
+            switch (newState)
+            {
+                case BoardState.None:
+                    break;
+                case BoardState.BLOCK_DOWN:
+                    PlayerSessionProperties.SetNextSequenceIndex();
+                    break;
+                case BoardState.CHECK:
+                    break;
+                case BoardState.CLEAN_UP:
+                    ChangeState(BoardState.BLOCK_DOWN);
+
+                    break;
+
+            }
+        }
+
+        ////em outra classe
+        //BoardController.CurrentState
+        //.Where(state => state == GameState.Playing)
+        //.Subscribe(_ => Debug.Log("Entrou em modo Jogando"))
+        //.AddTo(this);
+
+
+        public void ChangeState(BoardState newState)
+        {
+            _currentState.Value = newState;
+        }
+
+
+        private void OnMatchFailed()
+        {
+            ChangeState(BoardState.BLOCK_DOWN);
+        }
         private void OnCellsCleaned(Vector2Int[] matchList)
         {
             foreach (Vector2Int matchPosition in matchList)
@@ -70,10 +144,12 @@ namespace Game.Board
 
         private void OnMatch(List<Vector2Int[]> positions)
         {
+            ChangeState(BoardState.MATCH);
 
             Vector2Int[] singleGemPosition = positions.SelectMany(x => x).Distinct().ToArray();
-            Debug.Log("match count: " + singleGemPosition.Length);
+
             Board.RemoveGems(singleGemPosition);
+
 
         }
 
@@ -94,6 +170,7 @@ namespace Game.Board
         public void SetGemBlockAuto()
         {
             Board.SetGemsInCells(PiecesBlockBehaviour.Instance.piecesBlockController.PositionGemPair);
+
         }
 
 

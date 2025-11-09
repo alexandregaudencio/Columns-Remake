@@ -102,6 +102,7 @@ namespace Game.Board
                 RemoveGem(position);
             }
             CellsCleaned?.Invoke(positions);
+            BoardController.Instance.ChangeState(BoardState.CLEAN_UP);
         }
 
         #endregion

@@ -1,21 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
+
 
 namespace Game.Board.Gems
 {
     //provê gems a pedido
-    public class GemProvider : MonoBehaviour
+    [Serializable]
+    public class GemProvider
     {
-        [SerializeField] [Range(1,9)] private int maxGemType = 6;
+        [SerializeField][Range(1, 9)] private int maxGemType = 6;
         [SerializeField] private List<Gem> gems;
 
         private List<Gem> releasedGems = new();
-
-        public static GemProvider Instance { get; private set; }
-        public void Awake()
-        {
-            Instance = this;
-        }
 
         public Gem GetGem(GemType gemType)
         {

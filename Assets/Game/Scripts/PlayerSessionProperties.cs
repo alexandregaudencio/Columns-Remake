@@ -7,13 +7,15 @@ namespace Game.Player
     public class PlayerSessionProperties : MonoBehaviour
     {
 
-        [SerializeField] private int currentSequenceIndex = -1;
+        private int currentSequenceIndex = 0;
+        [SerializeField] private GemSequenceProvider gemSequenceProvider;
         public event Action<int> SequenceIndexUpdate;
+
         public Sequence CurrentSequence
         {
             get
             {
-                return GemSequenceProvider.Instance.FindSequence(currentSequenceIndex);
+                return gemSequenceProvider.FindSequence(currentSequenceIndex);
             }
         }
 
@@ -21,14 +23,17 @@ namespace Game.Player
         {
             get
             {
-                return GemSequenceProvider.Instance.FindSequence(currentSequenceIndex + 1);
+                return gemSequenceProvider.FindSequence(currentSequenceIndex + 1);
             }
         }
 
-
+        private void Awake()
+        {
+            gemSequenceProvider.Initialize();
+        }
         private void Start()
         {
-            SetNextSequenceIndex();
+            SequenceIndexUpdate?.Invoke(currentSequenceIndex);
         }
 
 
