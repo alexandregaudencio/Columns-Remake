@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ale.startup-package-installer": {
+      "version": "https://github.com/alexandregaudencio/com.Ale.StartupPackageInstaller.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8dde0df8e8c5375fdf6ae8a67177b9d46bbcd72d"
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 1,

@@ -92,7 +92,8 @@ namespace Game.Board
 
         private void Update()
         {
-            UpdateStoppedTimeLogic();
+            if (BoardController.CurrentState.Value == BoardState.BLOCK_DOWN)
+                UpdateStoppedTimeLogic();
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 BoardController.Instance.SetGemBlockAuto();

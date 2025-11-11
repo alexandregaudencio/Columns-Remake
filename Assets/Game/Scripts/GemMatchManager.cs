@@ -68,7 +68,7 @@ namespace Game.Board
                 {
                     message += $"pos:{pos}";
                 }
-                message = "\n";
+                message += "\n";
             }
             Debug.Log(message);
 

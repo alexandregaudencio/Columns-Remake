@@ -100,7 +100,7 @@ namespace Game.Board
 
                     break;
                 case BoardState.CLEAN_UP:
-
+                    ChangeState(BoardState.BLOCK_DOWN);
                     break;
 
             }
@@ -150,7 +150,7 @@ namespace Game.Board
 
             Vector2Int[] singleGemPosition = positions.SelectMany(x => x).Distinct().ToArray();
 
-            Board.RemoveGems(singleGemPosition);
+            _ = Board.RemoveGemsAsync(singleGemPosition);
 
 
         }

@@ -1,7 +1,8 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
-
 
 namespace Game.Board
 {
@@ -95,14 +96,17 @@ namespace Game.Board
 
         }
 
-        public void RemoveGems(Vector2Int[] positions)
+        public async Task RemoveGemsAsync(Vector2Int[] positions)
         {
             foreach (var position in positions)
             {
                 RemoveGem(position);
             }
             CellsCleaned?.Invoke(positions);
+            await UniTask.Delay(1000);
             BoardController.Instance.ChangeState(BoardState.CLEAN_UP);
+
+
         }
 
         #endregion
